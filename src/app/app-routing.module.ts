@@ -1,7 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AllPostsComponent } from './all-posts/all-posts.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { EditPostComponent } from './edit-post/edit-post.component';
+import { LoginComponent } from './login/login.component';
+import { SigninComponent } from './signin/signin.component';
+import { WrongWayComponent } from './wrong-way/wrong-way.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+{path:'', component: LoginComponent},
+{path:'signin', component: SigninComponent},
+{path:'dashboard', component: DashboardComponent},
+{path:'newpost', component: EditPostComponent},
+{path:'posts', component: AllPostsComponent},
+{path:'**', component: WrongWayComponent},
+
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

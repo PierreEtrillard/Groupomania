@@ -7,10 +7,24 @@ import * as fr from '@angular/common/locales/fr'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { LoginComponent } from './login/login.component';
+import { SigninComponent } from './signin/signin.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { HeaderComponent } from './header/header.component';
+import { EditPostComponent } from './edit-post/edit-post.component';
+import { WrongWayComponent } from './wrong-way/wrong-way.component';
+import { AllPostsComponent } from './all-posts/all-posts.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent,
+    SigninComponent,
+    DashboardComponent,
+    HeaderComponent,
+    EditPostComponent,
+    WrongWayComponent,
+    AllPostsComponent
   ],
   imports: [
     BrowserModule,
