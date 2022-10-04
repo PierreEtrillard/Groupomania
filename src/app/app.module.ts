@@ -14,6 +14,7 @@ import { HeaderComponent } from './header/header.component';
 import { EditPostComponent } from './edit-post/edit-post.component';
 import { WrongWayComponent } from './wrong-way/wrong-way.component';
 import { AllPostsComponent } from './all-posts/all-posts.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { AllPostsComponent } from './all-posts/all-posts.component';
     HeaderComponent,
     EditPostComponent,
     WrongWayComponent,
-    AllPostsComponent
+    AllPostsComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

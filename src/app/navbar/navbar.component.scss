@@ -1,0 +1,12 @@
+@import "../../scss/variables"; 
+@import "../../scss/keyframes"; 
+app-navbar{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    color: white;
+    background-color: $tertiaryColor;
+
+}

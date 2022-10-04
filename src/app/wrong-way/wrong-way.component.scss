@@ -1,0 +1,23 @@
+@import "../../scss/variables";
+@import "../../scss/keyframes";
+.main-wrong-way {
+  margin-top: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+.obvious-icon {
+  font-size: 200px;
+  color: $primaryColor;
+  background: transparent;
+  animation: turner 2s;
+}
+.shaddow{
+    font-size: 200px;
+    top: 50%;
+    right: -50%;
+    color: $tertiaryColor;
+    z-index: -1;
+    transform: rotate(60deg) skewY(320deg) translate(-125px, -270px);
+  }
