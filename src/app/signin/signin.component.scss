@@ -1,0 +1,24 @@
+@import "../../scss/variables";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+img {
+  width: 25%;
+}
+form {
+  color: $tertiaryColor;
+  width: 80%;
+  height: 80%;
+  label{
+    color: black;
+    font-weight:500;
+    margin-top: 20px;
+  }
+  .form-check-input{
+    margin-top: 25px;
+  }
+}

@@ -15,6 +15,7 @@ import { EditPostComponent } from './edit-post/edit-post.component';
 import { WrongWayComponent } from './wrong-way/wrong-way.component';
 import { AllPostsComponent } from './all-posts/all-posts.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { NavbarComponent } from './navbar/navbar.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    FormsModule
   ],
   providers: [
     {provide :LOCALE_ID, useValue:'fr-FR'}

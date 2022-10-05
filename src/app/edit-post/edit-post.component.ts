@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./edit-post.component.scss']
 })
 export class EditPostComponent implements OnInit {
-
+  
   constructor() { }
 
   ngOnInit(): void {
