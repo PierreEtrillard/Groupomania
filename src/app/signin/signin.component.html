@@ -12,31 +12,25 @@
     entre collègues.
   </p>
   <h3>C'est à vous, renseignez ci dessous:</h3>
-  <!--ngForm est une methode Angular instanciant un objet 'FormGroup' qui pilote le form du DOM.
-  NgModel est une methode instanciant un objet 'FormControl' pilotant les inputs dans lesquels sont 
-  déclaré des variable (on déclare une variable dans le template avec "#" et on lie une entrée avec 
-  [(ngModel)]="objetDuComposant.propriétée" -->
-  <form novalidate (ngSubmit)="sendForm(registerForm)" #registerForm="ngForm">
-    <!--    ^ : novalidate permety de prendre le pas sur la validation automatique-->
+  <form novalidate (ngSubmit)="sendNewUser()" [formGroup]="signinForm">
     <div class="form-group">
       <label for="pseudo">Un prénom ou un pseudonyme</label>
       <input
         id="pseudo"
+        class="form-control"
         aria-describedby="votre prénom"
         type="text"
-        required
-        minlength="2"
-        placeholder="mon prénom/pseudonyme"
-        class="form-control"
-        name="pseudo"
-        [(ngModel)]="user.pseudo"
-        #pseudoController="ngModel"
+        formControlName="pseudo"
+        placeholder="prénom/pseudonyme"
         [ngClass]="{
-          'is-invalid': pseudoController.touched && !pseudoController.valid
+          'is-invalid': signinForm.controls['pseudo'].touched && !signinForm.controls['pseudo'].valid
+        }"
+        [ngClass]="{
+          'is-valid': signinForm.controls['pseudo'].touched && signinForm.controls['pseudo'].valid
         }"
       />
       <small
-        *ngIf="pseudoController.errors"
+        *ngIf="signinForm.controls['pseudo'].errors"
         id="pseudoAssistant"
         class="invalid-feedback mb-3"
         ><span>Ce champ dois contenir au moins 2 caractères</span></small
@@ -46,22 +40,20 @@
       <label for="email">Une adresse mail valide</label>
       <input
         type="email"
-        email
-        required
         id="email"
         aria-describedby="emailHelp"
         placeholder="exemple@mail.com"
         class="form-control"
-        name="email"
-        [(ngModel)]="user.email"
-        #mailController="ngModel"
+        formControlName="email"
         [ngClass]="{
-          'is-invalid': mailController.touched && !mailController.valid
+          'is-invalid': signinForm.controls['email'].touched && !signinForm.controls['email'].valid
+        }"
+        [ngClass]="{
+          'is-valid': signinForm.controls['email'].touched && signinForm.controls['email'].valid
         }"
       />
       <small
-        *ngIf="mailController.errors"
-        id="pseudoAssistant"
+      *ngIf="signinForm.controls['email'].errors"
         class="invalid-feedback mb-3"
       >
         <span>Cet email n'est pas valide.</span>
@@ -69,144 +61,32 @@
     </div>
     <div class="form-group">
       <label for="password"
-        >Un mot de passe fort (au moins 9 caractères dont un caractère spécial,
-        une majuscule, une minuscule) :</label
+        >Un mot ou une phrase de passe façile à retenir pour vous mais d'au moins 9 caractères :</label
       >
       <input
         type="password"
         class="form-control"
         id="password"
-        name="password"
-        minlength="9"
-        password
-        required
-        [(ngModel)]="user.password"
-        placeholder="Mot2p@sse est déjà pris ☺"
-        [(ngModel)]="user.password"
-        #passwordController="ngModel"
+        placeholder="exemple : 'J'ai 1 super Patron!'"
+        formControlName="password"
         [ngClass]="{
-          'is-invalid': passwordController.touched && !passwordController.valid
+          'is-invalid': signinForm.controls['password'].touched && !signinForm.controls['password'].valid
+        }"
+        [ngClass]="{
+          'is-valid': signinForm.controls['password'].touched && signinForm.controls['password'].valid
         }"
       />
       <small
-        *ngIf="passwordController.errors?.['minlength']"
+      *ngIf="signinForm.controls['password'].errors"
         id="pseudoAssistant"
         class="invalid-feedback mb-3"
         ><span>Mot de passe trop cours</span></small
       >
     </div>
     <div class="form-check">
-      <input type="checkbox" class="form-check-input" id="conditionsAcceptator" />
+      <input type="checkbox" formControlName="userCheck" value="ok" class="form-check-input" id="conditionsAcceptator" />
       <label class="form-check-label" for="conditionsAcceptator">J'accepte les <a class="link" routerLink="/cgi">conditions d'utilisation</a></label>
     </div>
-    <button *ngIf="registerForm.valid" type="submit" class="btn-gpm">Je m'inscris</button>
-  </form>
-</div>
+    <button *ngIf="signinForm.valid" type="submit" class="btn-gpm">Je m'inscris</button>
 
- <!-- ****************  HTML  TEMPLATE MANNER  ****************************** 
-  <!--ngForm est une methode Angular instanciant un objet 'FormGroup' qui pilote le form du DOM.
-  NgModel est une methode instanciant un objet 'FormControl' pilotant les inputs dans lesquels sont 
-  déclaré des variable (on déclare une variable dans le template avec "#" et on lie une entrée avec 
-  [(ngModel)]="objetDuComposant.propriétée" 
-
-<h1>
-  <img
-    src="../../assets/images/icon-left-font-monochrome-black.png"
-    alt="logo Groupomania"
-  />Inscription
-</h1>
-<div class="container">
-  <h2>Bienvenu dans l'aventure Groupomania !</h2>
-  <p>
-    Parce qu'une entreprise n'est rien sans le bien être de ceux qui la
-    composent, cette application vas vous offrir un espace d'échange amical
-    entre collègues.
-  </p>
-  <h3>C'est à vous, renseignez ci dessous:</h3>
-  <form novalidate (ngSubmit)="sendForm(registerForm)" #registerForm="ngForm">
-    <!--    ^ : novalidate permety de prendre le pas sur la validation automatique
-    <div class="form-group">
-      <label for="pseudo">Un prénom ou un pseudonyme</label>
-      <input
-        id="pseudo"
-        aria-describedby="votre prénom"
-        type="text"
-        required
-        minlength="2"
-        placeholder="mon prénom/pseudonyme"
-        class="form-control"
-        name="pseudo"
-        [(ngModel)]="user.pseudo"
-        #pseudoController="ngModel"
-        [ngClass]="{
-          'is-invalid': pseudoController.touched && !pseudoController.valid
-        }"
-      />
-      <small
-        *ngIf="pseudoController.errors"
-        id="pseudoAssistant"
-        class="invalid-feedback mb-3"
-        ><span>Ce champ dois contenir au moins 2 caractères</span></small
-      >
-    </div>
-    <div class="form-group">
-      <label for="email">Une adresse mail valide</label>
-      <input
-        type="email"
-        email
-        required
-        id="email"
-        aria-describedby="emailHelp"
-        placeholder="exemple@mail.com"
-        class="form-control"
-        name="email"
-        [(ngModel)]="user.email"
-        #mailController="ngModel"
-        [ngClass]="{
-          'is-invalid': mailController.touched && !mailController.valid
-        }"
-      />
-      <small
-        *ngIf="mailController.errors"
-        id="pseudoAssistant"
-        class="invalid-feedback mb-3"
-      >
-        <span>Cet email n'est pas valide.</span>
-      </small>
-    </div>
-    <div class="form-group">
-      <label for="password"
-        >Un mot de passe fort (au moins 9 caractères dont un caractère spécial,
-        une majuscule, une minuscule) :</label
-      >
-      <input
-        type="password"
-        class="form-control"
-        id="password"
-        name="password"
-        minlength="9"
-        password
-        required
-        [(ngModel)]="user.password"
-        placeholder="Mot2p@sse est déjà pris ☺"
-        [(ngModel)]="user.password"
-        #passwordController="ngModel"
-        [ngClass]="{
-          'is-invalid': passwordController.touched && !passwordController.valid
-        }"
-      />
-      <small
-        *ngIf="passwordController.errors?.['minlength']"
-        id="pseudoAssistant"
-        class="invalid-feedback mb-3"
-        ><span>Mot de passe trop cours</span></small
-      >
-    </div>
-    <div class="form-check">
-      <input type="checkbox" class="form-check-input" id="conditionsAcceptator" />
-      <label class="form-check-label" for="conditionsAcceptator">J'accepte les <a class="link" routerLink="/cgi">conditions d'utilisation</a></label>
-    </div>
-    <button *ngIf="registerForm.valid" type="submit" class="btn-gpm">Je m'inscris</button>
-  </form>
-</div>
--->
+</form>
