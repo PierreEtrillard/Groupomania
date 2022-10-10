@@ -27,9 +27,9 @@ export class SigninComponent implements OnInit {
   }
   sendNewUser(){
     this.newUser = {
-        pseudo: JSON.stringify(this.signinForm.value.pseudo),
-        email: JSON.stringify(this.signinForm.value.email),
-        password: JSON.stringify(this.signinForm.value.password),
+        pseudo: this.signinForm.value.pseudo,
+        email: this.signinForm.value.email,
+        password: this.signinForm.value.password,
       };
     this.usersService.newUser(this.newUser)
   }

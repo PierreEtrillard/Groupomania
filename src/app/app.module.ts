@@ -17,6 +17,7 @@ import { EditPostComponent } from './edit-post/edit-post.component';
 import { WrongWayComponent } from './wrong-way/wrong-way.component';
 import { AllPostsComponent } from './all-posts/all-posts.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { NavbarComponent } from './navbar/navbar.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     FontAwesomeModule,
     ReactiveFormsModule
   ],
