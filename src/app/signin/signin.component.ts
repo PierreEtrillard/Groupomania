@@ -31,6 +31,6 @@ export class SigninComponent implements OnInit {
         email: this.signinForm.value.email,
         password: this.signinForm.value.password,
       };
-    this.usersService.newUser(this.newUser)
+    this.usersService.newUser(this.newUser).subscribe()
   }
 }

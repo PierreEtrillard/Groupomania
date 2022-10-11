@@ -8,13 +8,16 @@
 }
 img {
   object-fit: contain;
-  width: 25%;
+  width: 35%;
 }
 header {
+  position: fixed;
+  z-index: 10;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 15%;
+  height: 10%;
+  width: 100%;
   @include linear-background;
 }
 fa-icon {

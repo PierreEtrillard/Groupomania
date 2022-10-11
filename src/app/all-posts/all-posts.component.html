@@ -1,7 +1,39 @@
 <app-header></app-header>
-<main class="post-area">
-    <div class="card" *ngFor="let post of posts"></div>
-   
-
- <app-navbar></app-navbar>
+<main>
+  <section class="post-area">
+    <div *ngFor="let post of posts" class="card" style="width: 18rem">
+      <!-- <fa-icon *ngIf="post.author == user.pseudo && correctingMod" [icon]="faEraser" class="fa-2x clicked"></fa-icon> -->
+      <div class="card-body">
+        <h5 class="card-title">{{ post.title | titlecase }}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">
+          de {{ post.author | uppercase }}
+        </h6>
+        <h6 class="card-subtitle mb-2 text-muted">
+          le {{ post.createdAt | date: "dd MMMM. à HH:mm" }}
+        </h6>
+        <img
+          [src]="post.imageUrl"
+          alt="{{ post.textContent }}"
+          class="card-img"
+        />
+        <p class="card-text">
+          {{ post.textContent }}
+        </p>
+      </div>
+      <div
+        (click)="addComment()"
+        [ngClass]="commentArea ? 'card comment-wrapper' : 'comment-btn'"
+      >
+        <fa-icon
+          [icon]="faCommenting"
+          class="fa-2x clicked comment-icon"
+        ></fa-icon>
+        <div *ngIf="commentArea" class="comment-body">
+          <h6 class="card-subtitle">de {{ user.pseudo }}:</h6>
+          <input />
+        </div>
+      </div>
+    </div>
+  </section>
+  <app-navbar></app-navbar>
 </main>

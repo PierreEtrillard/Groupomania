@@ -1,1 +1,61 @@
-<p>edit-post works!</p>
+<app-header></app-header>
+<main class="container">
+  <h1>Exprimez vous !</h1>
+  <form novalidate (ngSubmit)="sendNewPost()" [formGroup]="newPostForm">
+    <section class="card-title post-section  form-group">
+      <label> Titre de mon post : </label>
+      <input
+        id="title"
+        aria-describedby="titre du post"
+        placeholder="ecrivez ici"
+        type="text"
+        formControlName="title"
+        class="form-control card-subtitle mb-2 text-muted"
+        [ngClass]="{
+          'is-invalid':
+            newPostForm.controls['title'].touched &&
+            !newPostForm.controls['title'].valid
+        }"
+        [ngClass]="{
+          'is-valid':
+            newPostForm.controls['title'].touched &&
+            newPostForm.controls['title'].valid
+        }"
+      />
+      <small
+        *ngIf="newPostForm.controls['title'].errors"
+        class="invalid-feedback mb-3"
+        ><span>Vous avez oublié le titre !</span></small
+      >
+    </section>
+    <section class="card-body post-section">
+      <div class="sub-section form-group">
+        <label class="card-title"> J'ajoute une image à mon post: </label>
+        <input
+          id="pic"
+          aria-describedby="image du post"
+          type="file"
+          formControlName="imageUrl"
+          class="form-control card-subtitle mb-2 text-muted"
+        />
+      </div>
+      <div class="sub-section form-group">
+        <label class="card-title"> J'écris mon commentatire: </label>
+        <input
+          id="comment"
+          placeholder="ecrivez ici"
+          aria-describedby="image du post"
+          type="text"
+          formControlName="textContent"
+          class="form-control card-subtitle mb-2 text-muted"
+        />
+      </div>
+    </section>
+    <fa-icon
+    *ngIf="newPostForm.valid"
+      [icon]="faPaperPlane"
+      class="fa-2x clicked"
+      type="submit"
+    ></fa-icon>
+  </form>
+</main>

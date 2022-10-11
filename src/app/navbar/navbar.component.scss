@@ -24,7 +24,7 @@ nav {
   transition: 0.5s;
   position: relative;
   &:hover {
-    transform: rotateY(90px);
+    transform: rotateY(180deg) translateX(30px);
     background-color:$tertiaryColor;
     color: white;
     border: double white 4px;
@@ -38,15 +38,14 @@ nav {
     right: 0;
   display: flex;
   align-items: center;
-  
-  opacity: 0;
   transition: 0.5s;
   background-color: $tertiaryColor;
   color: white;
   white-space: nowrap;
   height: 70px;
   z-index: -1;
+  transform: scaleX(0);
   &:hover {
-    opacity: 1;
+    transform: scaleX(1);
   }
 }

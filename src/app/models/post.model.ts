@@ -1,7 +1,8 @@
 export class Post {
     title!:string;
-    date!:Date;
-    image?:string;
-    comment!:string;
-    
+    author!:string;
+    createdAt?:Date;
+    imageUrl?:string;
+    textContent!:string;
+    comments?:string;
 }

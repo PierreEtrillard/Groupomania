@@ -12,19 +12,11 @@ export class UsersService {
   constructor(private http: HttpClient) { }
 
   newUser(user: User): Observable<User> {
-    console.log(`le nouvelle utilisateur:  ${JSON.stringify(user)} va être envoyé à ${apiUrl}/users`);
-    return this.http.post<User>(`${apiUrl}/users`,user).pipe(
-      tap(
-        (res) => console.log(res)
-      ),
-      catchError((err) => {
-        console.error(err)
-        return of()
-      }))
+    return this.http.post<User>(`${apiUrl}/signin`,user)
   }
   updateUser(user: User,id:string): Observable<User> {
-    console.log(`Mise à jour de l'utilisateur:  ${JSON.stringify(user)} envoyé à ${apiUrl}/users/:${id}`);
-    return this.http.patch<User>(`${apiUrl}/users/:${id}`,user).pipe(
+    console.log(`Mise à jour de l'utilisateur:  ${JSON.stringify(user)} envoyé à ${apiUrl}/signin/:${id}`);
+    return this.http.patch<User>(`${apiUrl}/signin/:${id}`,user).pipe(
       tap(
         (res) => console.log(res)
       ),
