@@ -1,5 +1,6 @@
 @import "../../scss/variables";
 @import "../../scss/keyframes";
+
 .main-wrong-way {
   display: flex;
   flex-direction: column;
@@ -7,12 +8,13 @@
   justify-content: space-around;
 }
 .obvious-icon {
-  margin-top: 15%;
+  margin-top: 10%;
   font-size: 200px;
   color: $primaryColor;
   background: transparent;
   animation: turner 2s;
 }
+
 .shaddow{
     font-size: 200px;
     top: 50%;
