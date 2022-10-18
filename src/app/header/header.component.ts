@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
+import { UsersService } from '../services/users.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -7,10 +8,12 @@ import { faUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 })
 export class HeaderComponent implements OnInit {
   faUpRightFromSquare = faUpRightFromSquare
-  constructor() { }
+  constructor(private usersService:UsersService) { }
 
   ngOnInit(): void {
     
   }
-
+disconnection(){
+  return this.usersService.logout().subscribe()
+}
 }

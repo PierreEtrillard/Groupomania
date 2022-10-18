@@ -24,7 +24,11 @@ form {
   a.connection-page {
     @include gradient-text;
     position: absolute;
-    right:0px;
-    bottom:0px;
+    font-weight: bold;
+    right:15px;
+    bottom:25px;
+    box-shadow: $tertiaryColor 0px 0px 5px;
+    border-radius: 20px;
+    padding: 10px;
   }
 }

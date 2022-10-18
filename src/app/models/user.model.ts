@@ -1,6 +1,9 @@
 export class User {
-pseudo!:string; 
+name?:string; 
 email!:string; 
 password!:string; 
 photo?:string; 
+myHobbies?:string;
+myLikes?:[];
+myEvents?:[];
 }

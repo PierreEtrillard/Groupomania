@@ -1,7 +1,7 @@
 <h1>
   <img
     src="../../assets/images/icon-left-font-monochrome-black.png"
-    alt="logo Groupomania"
+    alt="Groupomania"
   />Inscription
 </h1>
 <div class="container">
@@ -14,29 +14,6 @@
   <h3>C'est à vous, renseignez ci dessous:</h3>
   <form novalidate (ngSubmit)="sendNewUser()" [formGroup]="signinForm">
     <div class="form-group">
-      <label for="pseudo">Un prénom ou un pseudonyme</label>
-      <input
-        id="pseudo"
-        class="form-control"
-        aria-describedby="votre prénom"
-        type="text"
-        formControlName="pseudo"
-        placeholder="prénom/pseudonyme"
-        [ngClass]="{
-          'is-invalid': signinForm.controls['pseudo'].touched && !signinForm.controls['pseudo'].valid
-        }"
-        [ngClass]="{
-          'is-valid': signinForm.controls['pseudo'].touched && signinForm.controls['pseudo'].valid
-        }"
-      />
-      <small
-        *ngIf="signinForm.controls['pseudo'].errors"
-        id="pseudoAssistant"
-        class="invalid-feedback mb-3"
-        ><span>Ce champ dois contenir au moins 2 caractères</span></small
-      >
-    </div>
-    <div class="form-group">
       <label for="email">Une adresse mail valide</label>
       <input
         type="email"
@@ -46,14 +23,18 @@
         class="form-control"
         formControlName="email"
         [ngClass]="{
-          'is-invalid': signinForm.controls['email'].touched && !signinForm.controls['email'].valid
+          'is-invalid':
+            signinForm.controls['email'].touched &&
+            !signinForm.controls['email'].valid
         }"
         [ngClass]="{
-          'is-valid': signinForm.controls['email'].touched && signinForm.controls['email'].valid
+          'is-valid':
+            signinForm.controls['email'].touched &&
+            signinForm.controls['email'].valid
         }"
       />
       <small
-      *ngIf="signinForm.controls['email'].errors"
+        *ngIf="signinForm.controls['email'].errors"
         class="invalid-feedback mb-3"
       >
         <span>Cet email n'est pas valide.</span>
@@ -61,7 +42,8 @@
     </div>
     <div class="form-group">
       <label for="password"
-        >Un mot ou une phrase de passe façile à retenir pour vous mais d'au moins 9 caractères :</label
+        >Un mot ou une phrase de passe façile à retenir pour vous mais d'au
+        moins 9 caractères :</label
       >
       <input
         type="password"
@@ -70,23 +52,41 @@
         placeholder="exemple : 'J'ai 1 super Patron!'"
         formControlName="password"
         [ngClass]="{
-          'is-invalid': signinForm.controls['password'].touched && !signinForm.controls['password'].valid
+          'is-invalid':
+            signinForm.controls['password'].touched &&
+            !signinForm.controls['password'].valid
         }"
         [ngClass]="{
-          'is-valid': signinForm.controls['password'].touched && signinForm.controls['password'].valid
+          'is-valid':
+            signinForm.controls['password'].touched &&
+            signinForm.controls['password'].valid
         }"
       />
       <small
-      *ngIf="signinForm.controls['password'].errors"
-        id="pseudoAssistant"
+        *ngIf="signinForm.controls['password'].errors"
+        id="nameAssistant"
         class="invalid-feedback mb-3"
         ><span>Mot de passe trop cours</span></small
       >
     </div>
     <div class="form-check">
-      <input type="checkbox" formControlName="userCheck" value="ok" class="form-check-input" id="conditionsAcceptator" />
-      <label class="form-check-label" for="conditionsAcceptator">J'accepte les <a class="link" routerLink="/cgi">conditions d'utilisation</a></label>
+      <input
+        type="checkbox"
+        formControlName="userCheck"
+        value="ok"
+        class="form-check-input"
+        id="conditionsAcceptator"
+      />
+      <label class="form-check-label" for="conditionsAcceptator"
+        >J'accepte les
+        <a class="link" routerLink="/cgu">conditions d'utilisation</a></label
+      >
     </div>
-    <button *ngIf="signinForm.valid" type="submit" class="btn-gpm">Je m'inscris</button>
-<a class="connection-page" routerLink="/">retour à la page de connection →</a>
-</form>
+    <button *ngIf="signinForm.valid" type="submit" class="btn-gpm">
+      Je m'inscris
+    </button>
+    <a class="connection-page" routerLink="/"
+      >retour à la page de connection</a
+    >
+  </form>
+</div>

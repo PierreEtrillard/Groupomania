@@ -3,20 +3,27 @@ import { HttpClient } from "@angular/common/http";
 import { User } from '../models/user.model';
 import { environment } from '../../environments/environment'
 const apiUrl = environment.apiUrl
-import { catchError, Observable, of, tap } from 'rxjs';
+import { BehaviorSubject, catchError, Observable, of, tap } from 'rxjs';
+import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
-
-  constructor(private http: HttpClient) { }
-
-  newUser(user: User): Observable<User> {
-    return this.http.post<User>(`${apiUrl}/auth/signin`,user)
+  isAuth$ = new BehaviorSubject<boolean>(false);
+  httpOptions:any = {
+    mode:'cors',
+    withCredentials:true,
+    credentials: "include"
   }
-  updateUser(user: User,id:string): Observable<User> {
+  constructor(private http: HttpClient, private router: Router) { }
+
+  newUser(user: User) {
+    return this.http.post<{ message: string }>(`${apiUrl}/auth/signin`, user)
+  }
+
+  updateUser(user: User, id: string): Observable<User> {
     console.log(`Mise à jour de l'utilisateur:  ${JSON.stringify(user)} envoyé à ${apiUrl}/signin/:${id}`);
-    return this.http.patch<User>(`${apiUrl}/auth/signin/:${id}`,user).pipe(
+    return this.http.post<User>(`${apiUrl}/auth/signin/:${id}`, user).pipe(
       tap(
         (res) => console.log(res)
       ),
@@ -25,10 +32,23 @@ export class UsersService {
         return of()
       }))
   }
-  login(logData:any):Observable<any>{
-    return this.http.post<any>(`${apiUrl}/auth/login`,logData).pipe(
-      tap(
-        (res) => console.log(res)
+  login(logData: any): Observable<any> {
+    return this.http.post<any>(`${apiUrl}/auth/login`, logData, this.httpOptions).pipe(
+      tap(() => {
+        this.isAuth$.next(true);
+      }
+      ),
+      catchError((err) => {
+        console.error(err)
+        return of()
+      }))
+  }
+  logout() {
+    return this.http.post(`${apiUrl}/auth/logout`, this.httpOptions).pipe(
+      tap(() => {
+        this.isAuth$.next(false);
+        this.router.navigate(['']);
+      }
       ),
       catchError((err) => {
         console.error(err)

@@ -18,6 +18,7 @@ import { WrongWayComponent } from './wrong-way/wrong-way.component';
 import { AllPostsComponent } from './all-posts/all-posts.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HttpClientModule } from '@angular/common/http';
+import { MyProfileComponent } from './my-profile/my-profile.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { HttpClientModule } from '@angular/common/http';
     EditPostComponent,
     WrongWayComponent,
     AllPostsComponent,
-    NavbarComponent
+    NavbarComponent,
+    MyProfileComponent
   ],
   imports: [
     BrowserModule,

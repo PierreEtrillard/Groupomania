@@ -11,7 +11,7 @@ import { User } from '../models/user.model';
 })
 export class AllPostsComponent implements OnInit {
 posts:Post[]
-user:User={pseudo:"pseudo réccupéré par auth",
+user:User={name:"pseudo réccupéré par auth",
 email:"mail réccupéré par auth" ,
 password:"" }
 faEraser=faEraser

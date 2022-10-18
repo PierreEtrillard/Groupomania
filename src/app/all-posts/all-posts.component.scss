@@ -2,6 +2,11 @@
 main {
   display: flex;
 }
+h5{
+  transform: translateY(-35px);
+  background-color: white;
+  width: max-content;
+}
 section.post-area {
   margin-top: 12%;
   width: 100%;

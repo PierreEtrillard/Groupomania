@@ -12,6 +12,7 @@
           le {{ post.createdAt | date: "dd MMMM. à HH:mm" }}
         </h6>
         <img
+          *ngIf="post.imageUrl !== ''"
           [src]="post.imageUrl"
           alt="{{ post.textContent }}"
           class="card-img"
@@ -29,7 +30,7 @@
           class="fa-2x clicked comment-icon"
         ></fa-icon>
         <div *ngIf="commentArea" class="comment-body">
-          <h6 class="card-subtitle">de {{ user.pseudo }}:</h6>
+          <h6 class="card-subtitle">de {{ user.name }}:</h6>
           <input />
         </div>
       </div>
