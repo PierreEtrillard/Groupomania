@@ -34,7 +34,7 @@ export class SigninComponent implements OnInit {
     this.usersService.newUser(this.newUser).pipe(
       switchMap(() => this.usersService.login(this.newUser)),
       tap(() => {
-        this.router.navigate(['/posts']);
+        this.router.navigate(['']);
       }),
       catchError(error => {
         this.errorMsg = error.message;

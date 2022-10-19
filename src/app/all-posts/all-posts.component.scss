@@ -1,17 +1,18 @@
 @import "../../scss/variables";
+@import "../../scss/keyframes";
 main {
   display: flex;
 }
-h5{
+h5 {
   transform: translateY(-35px);
+  max-width: max-content;
   background-color: white;
-  width: max-content;
 }
 section.post-area {
   margin-top: 12%;
   width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   justify-content: space-evenly;
   align-items: center;
   .card {
@@ -20,6 +21,30 @@ section.post-area {
     border: double 4px $tertiaryColor;
     min-width: 60%;
     position: relative;
+  }
+}
+.like-wrapper {
+  display: flex;
+  max-width: max-content;
+  position: absolute;
+  bottom: -55px;
+  left: 25px;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.7em;
+  background-color: white;
+  transform: translate(20px,-35px);
+
+  .obvious-heart {
+    position: absolute;
+    &::after{
+      content: attr(score);
+    }
+  }
+  .liked-state{
+    position: absolute;
+    color: $primaryColor;
+    transform: scale(1.3);
   }
 }
 .comment-btn {
@@ -36,15 +61,18 @@ section.post-area {
   bottom: -25px;
   right: 25px;
 }
-.comment-body{width:100%}
+.comment-body {
+  width: 100%;
+}
 .comment-wrapper {
-    min-width: 100%;
+  min-width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-end;
-  fa-icon, h6{
-      margin-left: 15px;
+  fa-icon,
+  h6 {
+    margin-left: 15px;
   }
   input {
     width: 95%;

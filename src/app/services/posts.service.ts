@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { catchError, Observable, of, Subject, tap } from 'rxjs';
 import { Post } from '../models/post.model';
 import { UsersService } from './users.service';
+import { Router } from '@angular/router';
 const apiUrl = environment.apiUrl;
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,9 @@ const apiUrl = environment.apiUrl;
 export class PostsService {
 
   allPosts$ = new Subject<Post[]>;
+  postTargeted:Post
   constructor(
-    private http: HttpClient, private usersService: UsersService
+    private http: HttpClient, private router:Router
   ) { }
   httpOptions:any = {
     mode:'cors',
@@ -22,7 +24,7 @@ export class PostsService {
   getAllPosts(): Observable<any> {
         return this.http.get(`${apiUrl}/posts`,this.httpOptions).pipe(catchError((err) => {
         console.log(err);
-        return of()
+        return of(this.router.navigate(['/login']))
       })
     )
   }
@@ -31,5 +33,8 @@ export class PostsService {
 
     return this.http.post<Post>(`${apiUrl}/posts`, post)
 
+  }
+  likePost(likeIt:boolean|null,postId:string){
+    return this.http.post(`${apiUrl}/${postId}/like`,{likeIt:likeIt},this.httpOptions)
   }
 };

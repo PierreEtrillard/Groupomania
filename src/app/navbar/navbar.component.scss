@@ -2,13 +2,13 @@
 @import "../../scss/keyframes";
 nav {
   display: flex;
+  position: fixed;
   flex-direction: column;
+  min-height: 100%;
+  right: 0;
   align-items: flex-start;
   justify-content: space-evenly;
   background-color: $tertiaryColor;
-  min-height: 100%;
-  position: fixed;
-  right: 0;
 }
 .icon-wrapper {
   display: flex;

@@ -2,7 +2,7 @@
 <main class="container">
   <h1>Exprimez vous !</h1>
   <form novalidate (ngSubmit)="sendNewPost()" [formGroup]="newPostForm">
-    <section class="card-title post-section  form-group">
+    <section class="card-title post-section form-group">
       <label> Titre de mon post : </label>
       <input
         id="title"
@@ -10,7 +10,7 @@
         placeholder="ecrivez ici"
         type="text"
         formControlName="title"
-        class="form-control card-subtitle mb-2 text-muted"
+        class="form-control card-subtitle mb-2"
         [ngClass]="{
           'is-invalid':
             newPostForm.controls['title'].touched &&
@@ -36,7 +36,7 @@
           aria-describedby="image du post"
           type="file"
           formControlName="imageUrl"
-          class="form-control card-subtitle mb-2 text-muted"
+          class="form-control card-subtitle mb-2 "
         />
       </div>
       <div class="sub-section form-group">
@@ -47,15 +47,15 @@
           aria-describedby="image du post"
           type="text"
           formControlName="textContent"
-          class="form-control card-subtitle mb-2 text-muted"
+          class="form-control card-subtitle mb-2 "
         />
       </div>
     </section>
     <fa-icon
-    *ngIf="newPostForm.valid"
+      *ngIf="newPostForm.valid"
+      type="submit"
       [icon]="faPaperPlane"
       class="fa-2x clicked"
-      type="submit"
     ></fa-icon>
   </form>
 </main>

@@ -6,7 +6,7 @@
       <div class="card-body">
         <h5 class="card-title">{{ post.title | titlecase }}</h5>
         <h6 class="card-subtitle mb-2 text-muted">
-          de {{ post.author | uppercase }}
+          de {{ post.authorName | uppercase }}
         </h6>
         <h6 class="card-subtitle mb-2 text-muted">
           le {{ post.createdAt | date: "dd MMMM. à HH:mm" }}
@@ -30,11 +30,18 @@
           class="fa-2x clicked comment-icon"
         ></fa-icon>
         <div *ngIf="commentArea" class="comment-body">
-          <h6 class="card-subtitle">de {{ user.name }}:</h6>
           <input />
         </div>
       </div>
-    </div>
+      <div class="like-wrapper">
+        <fa-icon [icon]="faHeart"class="obvious-heart" score="22"></fa-icon>
+
+        J'<fa-icon [icon]="faHeart" 
+        ngClass="isliked(post.id)'liked-state':'not-liked'"
+        class="likedState"></fa-icon>
+        ce post !
+      </div>
+        </div>
   </section>
   <app-navbar></app-navbar>
 </main>

@@ -12,21 +12,23 @@ import { UsersService } from '../services/users.service';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup
   logData: any
-  errorMsg!: string;
+  errorMsg: string
   constructor(private formBuilder: FormBuilder, private userService: UsersService, private router: Router) { }
 
   ngOnInit(): void {
+    // this.userService.login(this.logData).subscribe(()=>this.router.navigate(['']))
     this.loginForm = this.formBuilder.group({
       email: ["", [Validators.required, Validators.email]],
       //prévoir une auth avec mail => email: ["",[Validators.required,Validators.email] ],
       password: ["", [Validators.required, Validators.minLength(9)]]
     })
   }
-  onLogin() {
+  async onLogin() {
     this.logData = {
       email: this.loginForm.value.email,
       password: this.loginForm.value.password
     };
-    this.userService.login(this.logData).subscribe(()=>this.router.navigate(['/posts']))
+    this.userService.login(this.logData).subscribe(
+      (err)=>{this.errorMsg=err.message})
   }
 }

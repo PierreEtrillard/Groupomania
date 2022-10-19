@@ -8,11 +8,11 @@ import { SigninComponent } from './signin/signin.component';
 import { WrongWayComponent } from './wrong-way/wrong-way.component';
 
 const routes: Routes = [
-{path:'', component: LoginComponent},
+{path:'', component: AllPostsComponent},
 {path:'signin', component: SigninComponent},
 {path:'dashboard', component: DashboardComponent},
 {path:'newpost', component: EditPostComponent},
-{path:'posts', component: AllPostsComponent},
+{path:'login', component: LoginComponent},
 {path:'**', component: WrongWayComponent},
 
 ];

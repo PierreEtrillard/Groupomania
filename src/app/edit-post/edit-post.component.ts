@@ -29,8 +29,9 @@ export class EditPostComponent implements OnInit {
       title: this.newPostForm.value.title,
       textContent: this.newPostForm.value.textContent,
       // imageUrl: this.newPostForm.value.imageUrl,
-      author:'auth signature',  
     };
+    console.log(`préparation de 'envoi du post: ${JSON.stringify(this.newPost)} vers api/posts`);
+
     return this.postsService.newPost(this.newPost).subscribe()
   }
 }
