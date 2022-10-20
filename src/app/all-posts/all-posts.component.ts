@@ -13,8 +13,7 @@ import { UsersService } from '../services/users.service';
 export class AllPostsComponent implements OnInit {
   posts: Post[]
   users: User[]
-  currentUUID: string
-  currentUser: any
+  currentUser: User
 
   faEraser = faEraser
   faCommenting = faCommenting
@@ -29,11 +28,29 @@ export class AllPostsComponent implements OnInit {
   ngOnInit(): void {
     this.postsServices.getAllPosts().subscribe(
       (obs) => { this.posts = obs })
-    this.currentUUID = document.cookie.split("userId=")[1]
-    this.usersServices.getAllProfiles().subscribe(obs => this.users = obs)
-    this.usersServices.getUserProfile().subscribe((obs) => { this.currentUser= obs })
+    this.currentUser = JSON.parse(localStorage['userProfile'])
   }
+  isLiked(postId: string) {
+    if (postId !== undefined) {
+      return this.currentUser.myLikes.includes(postId)
+    } else {
+      return false
+    }
+  }
+  likeAction(postId: string) {
 
+    const allreadylike = this.currentUser.myLikes.includes(postId)
+    if (allreadylike) {
+      this.currentUser.myLikes=this.currentUser.myLikes.filter(
+        (idList) => idList !== postId)
+    } else { this.currentUser.myLikes.push(postId) }
+    //this.userservice updater le [mylikes]
+    console.table(this.currentUser.myLikes)
+    this.postsServices.likePost(postId, allreadylike).subscribe()
+
+
+
+  }
   addComment() {
     this.commentArea = true
     // console.table(this.currentUser.myLikes)

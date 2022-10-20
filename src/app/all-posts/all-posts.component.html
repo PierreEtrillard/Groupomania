@@ -4,9 +4,16 @@
     <div *ngFor="let post of posts" class="card" style="width: 18rem">
       <!-- <fa-icon *ngIf="post.author == user.pseudo && correctingMod" [icon]="faEraser" class="fa-2x clicked"></fa-icon> -->
       <div class="card-body">
-        <h5 class="card-title">{{ post.title | titlecase }}</h5>
+        <div class="post-title">
+          <img
+            [src]="post.authorPhoto"
+            alt="photo de {{ post.author }}"
+            class="photo-profile"
+          />
+          <h5 class="card-title">{{ post.title | titlecase }}</h5>
+        </div>
         <h6 class="card-subtitle mb-2 text-muted">
-          de {{ post.authorName | uppercase }}
+          de {{ post.author | uppercase }}
         </h6>
         <h6 class="card-subtitle mb-2 text-muted">
           le {{ post.createdAt | date: "dd MMMM. à HH:mm" }}
@@ -33,15 +40,13 @@
           <input />
         </div>
       </div>
-      <div class="like-wrapper">
-        <fa-icon [icon]="faHeart"class="obvious-heart" score="22"></fa-icon>
-
-        J'<fa-icon [icon]="faHeart" 
-        ngClass="isliked(post.id)'liked-state':'not-liked'"
-        class="likedState"></fa-icon>
-        ce post !
-      </div>
+      <div class="like-wrapper" (click)="likeAction(post.id)">
+        <div [ngClass]="isLiked(post.id) ? 'liked-state' : 'unliked-state'">
+          J'<fa-icon [icon]="faHeart" class="liked-heart"></fa-icon>ce post !
         </div>
+        <fa-icon [icon]="faHeart" class="obvious-heart" score="22"></fa-icon>
+      </div>
+    </div>
   </section>
   <app-navbar></app-navbar>
 </main>

@@ -7,7 +7,7 @@ email!:string;
 password!:string; 
 photo?:string; 
 myHobbies?:string;
-myLikes?:[];
-myEvents?:[];
+myLikes:string[];
+myEvents?:string[];
 
 }

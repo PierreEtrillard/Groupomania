@@ -26,9 +26,10 @@ export class EditPostComponent implements OnInit {
   }
   sendNewPost() {
     this.newPost = {
+      id:"",
       title: this.newPostForm.value.title,
       textContent: this.newPostForm.value.textContent,
-      // imageUrl: this.newPostForm.value.imageUrl,
+      imageUrl: this.newPostForm.value.imageUrl,
     };
     console.log(`préparation de 'envoi du post: ${JSON.stringify(this.newPost)} vers api/posts`);
 

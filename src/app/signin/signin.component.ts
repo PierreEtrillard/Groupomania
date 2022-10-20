@@ -30,6 +30,7 @@ export class SigninComponent implements OnInit {
     this.newUser = {
       email: this.signinForm.value.email,
       password: this.signinForm.value.password,
+      myLikes:[]
     };
     this.usersService.newUser(this.newUser).pipe(
       switchMap(() => this.usersService.login(this.newUser)),

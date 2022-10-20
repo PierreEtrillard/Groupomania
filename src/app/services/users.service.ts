@@ -26,8 +26,6 @@ export class UsersService {
       tap((res) => {
         this.catchResponse = res
         localStorage['userProfile']=JSON.stringify(this.catchResponse.userProfile)
-        console.table(JSON.parse(localStorage['userProfile']));
-        
         this.router.navigate([''])
       }
       ),

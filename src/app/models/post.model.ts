@@ -1,8 +1,8 @@
 export class Post {
-    id?:string;
+    id:string;
     title!:string;
-    authorId?:string;
-    authorName?:string;
+    author?:string;
+    authorPhoto?:string;
     createdAt?:Date;
     imageUrl?:string;
     textContent!:string;

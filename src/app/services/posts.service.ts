@@ -12,20 +12,20 @@ const apiUrl = environment.apiUrl;
 export class PostsService {
 
   allPosts$ = new Subject<Post[]>;
-  postTargeted:Post
+  postTargeted: Post
   constructor(
-    private http: HttpClient, private router:Router
+    private http: HttpClient, private router: Router
   ) { }
-  httpOptions:any = {
-    mode:'cors',
-    withCredentials:true,
+  httpOptions: any = {
+    mode: 'cors',
+    withCredentials: true,
     credentials: "include"
   }
   getAllPosts(): Observable<any> {
-        return this.http.get(`${apiUrl}/posts`,this.httpOptions).pipe(catchError((err) => {
-        console.log(err);
-        return of(this.router.navigate(['/login']))
-      })
+    return this.http.get(`${apiUrl}/posts`, this.httpOptions).pipe(catchError((err) => {
+      console.log(err);
+      return of(this.router.navigate(['/login']))
+    })
     )
   }
   newPost(post: Post): Observable<Post> {
@@ -34,7 +34,14 @@ export class PostsService {
     return this.http.post<Post>(`${apiUrl}/posts`, post)
 
   }
-  likePost(likeIt:boolean|null,postId:string){
-    return this.http.post(`${apiUrl}/${postId}/like`,{likeIt:likeIt},this.httpOptions)
+  likePost(postId: string,likeIt:boolean) {
+    console.log("likeIt vaut: "+ likeIt);
+    let like=""
+    likeIt? like="yes":like="no" 
+    
+    return this.http.post(`${apiUrl}/posts/${postId}/like`, `${like}`, this.httpOptions).pipe(catchError((err) => {
+      console.log(err);
+      return of(err)
+    }))
   }
-};
+}
