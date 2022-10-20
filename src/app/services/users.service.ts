@@ -25,7 +25,9 @@ export class UsersService {
     return this.http.post<any>(`${apiUrl}/auth/login`, logData, this.httpOptions).pipe(
       tap((res) => {
         this.catchResponse = res
-        document.cookie = `userId=${this.catchResponse.userId}`
+        localStorage['userProfile']=JSON.stringify(this.catchResponse.userProfile)
+        console.table(JSON.parse(localStorage['userProfile']));
+        
         this.router.navigate([''])
       }
       ),
@@ -41,6 +43,7 @@ export class UsersService {
       tap(() => {
         this.isAuth$.next(false);
         document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });
+        localStorage.clear()
         this.router.navigate(['login']);
       }
       ),

@@ -9,4 +9,5 @@ photo?:string;
 myHobbies?:string;
 myLikes?:[];
 myEvents?:[];
+
 }
