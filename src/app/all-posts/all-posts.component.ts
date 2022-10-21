@@ -39,14 +39,13 @@ export class AllPostsComponent implements OnInit {
   }
   likeAction(postId: string) {
 
-    const allreadylike = this.currentUser.myLikes.includes(postId)
-    if (allreadylike) {
+    if (this.isLiked(postId)) {
       this.currentUser.myLikes=this.currentUser.myLikes.filter(
         (idList) => idList !== postId)
     } else { this.currentUser.myLikes.push(postId) }
     //this.userservice updater le [mylikes]
     console.table(this.currentUser.myLikes)
-    this.postsServices.likePost(postId, allreadylike).subscribe()
+    this.postsServices.likePost(postId, this.isLiked(postId)).subscribe()
 
 
 

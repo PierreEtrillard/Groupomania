@@ -26,6 +26,7 @@ export class EditPostComponent implements OnInit {
   }
   sendNewPost() {
     this.newPost = {
+      likers:[],
       id:"",
       title: this.newPostForm.value.title,
       textContent: this.newPostForm.value.textContent,

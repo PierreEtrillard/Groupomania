@@ -44,7 +44,10 @@
         <div [ngClass]="isLiked(post.id) ? 'liked-state' : 'unliked-state'">
           J'<fa-icon [icon]="faHeart" class="liked-heart"></fa-icon>ce post !
         </div>
-        <fa-icon [icon]="faHeart" class="obvious-heart" score="22"></fa-icon>
+        <div class="obvious-heart">
+          <fa-icon [icon]="faHeart"></fa-icon>
+          <div class="score">{{ post.likers.length }}</div>
+        </div>
       </div>
     </div>
   </section>

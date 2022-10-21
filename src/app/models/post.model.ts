@@ -7,5 +7,5 @@ export class Post {
     imageUrl?:string;
     textContent!:string;
     comments?:string;
-    likers?:string[];
+    likers:string[];
 }
