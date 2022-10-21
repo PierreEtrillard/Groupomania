@@ -85,6 +85,7 @@
     <button *ngIf="signinForm.valid" type="submit" class="btn-gpm">
       Je m'inscris
     </button>
+    <h3 class="error" *ngIf="errorMsg !=''">{{errorMsg}}</h3>
     <a class="connection-page" routerLink="/login"
       >retour à la page de connection</a
     >

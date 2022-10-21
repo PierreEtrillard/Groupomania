@@ -14,7 +14,6 @@ export class AllPostsComponent implements OnInit {
   posts: Post[]
   users: User[]
   currentUser: User
-
   faEraser = faEraser
   faCommenting = faCommenting
   faHeart = faHeart
@@ -31,7 +30,7 @@ export class AllPostsComponent implements OnInit {
     this.currentUser = JSON.parse(localStorage['userProfile'])
   }
   isLiked(postId: string) {
-    if (postId !== undefined) {
+    if (postId !== undefined && this.currentUser.myLikes !== undefined) {
       return this.currentUser.myLikes.includes(postId)
     } else {
       return false
@@ -39,16 +38,13 @@ export class AllPostsComponent implements OnInit {
   }
   likeAction(postId: string) {
 
-    if (this.isLiked(postId)) {
-      this.currentUser.myLikes=this.currentUser.myLikes.filter(
+    if (this.isLiked(postId) && this.currentUser.myLikes !== undefined) {
+      this.currentUser.myLikes = this.currentUser.myLikes.filter(
         (idList) => idList !== postId)
-    } else { this.currentUser.myLikes.push(postId) }
+    } else { if (this.currentUser.myLikes !== undefined) { this.currentUser.myLikes.push(postId) } }
     //this.userservice updater le [mylikes]
     console.table(this.currentUser.myLikes)
     this.postsServices.likePost(postId, this.isLiked(postId)).subscribe()
-
-
-
   }
   addComment() {
     this.commentArea = true

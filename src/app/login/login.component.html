@@ -54,7 +54,8 @@
           ><span>Mot de passe trop cours</span></small
         >
       </div>
-      <button [ngClass]="{'btn-gpm':loginForm.valid}" type="submit" class="disabled">Je me connecte</button>
-  <a routerLink="/signin">Pas encore de compte ?</a>
+      <button [ngClass]="{'btn-gpm-invalid':loginForm.invalid}" [ngClass]="{'btn-gpm':loginForm.valid}"type="submit">Je me connecte</button>
+      <p class="error" *ngIf="errorMsg">{{errorMsg}}</p>
+      <a routerLink="/signin">Pas encore de compte ?</a>
   </form>
 </div>

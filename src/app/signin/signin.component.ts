@@ -13,7 +13,8 @@ export class SigninComponent implements OnInit {
 
   public signinForm: FormGroup;
   newUser: User
-  errorMsg: string = ""
+  catchResponse:any
+  errorMsg: string = ''
   constructor(private usersService: UsersService, private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit() {
@@ -30,17 +31,20 @@ export class SigninComponent implements OnInit {
     this.newUser = {
       email: this.signinForm.value.email,
       password: this.signinForm.value.password,
-      myLikes:[]
     };
     this.usersService.newUser(this.newUser).pipe(
-      switchMap(() => this.usersService.login(this.newUser)),
-      tap(() => {
-        this.router.navigate(['']);
+      tap((res) => {
+        console.log(res);
+        this.catchResponse = res
+        localStorage['userProfile']=JSON.stringify(this.catchResponse.userProfile)
+        this.router.navigate([''])
       }),
       catchError(error => {
-        this.errorMsg = error.message;
+        this.errorMsg = "Désolé vous ne pouvez créer qu'un compte par adresse mail";
+        console.error(error);        
         return EMPTY;
       })
     ).subscribe();
+       
   }
 }

@@ -22,19 +22,7 @@ export class UsersService {
     return this.http.post<{ message: string }>(`${apiUrl}/auth/signin`, user)
   }
   login(logData: any): Observable<any> {
-    return this.http.post<any>(`${apiUrl}/auth/login`, logData, this.httpOptions).pipe(
-      tap((res) => {
-        this.catchResponse = res
-        localStorage['userProfile']=JSON.stringify(this.catchResponse.userProfile)
-        this.router.navigate([''])
-      }
-      ),
-      catchError((err) => {
-        console.error(err)
-        return of(err.error
-          // ou: "Désolé, identifiant ou mot de passe incorrecte"
-        )
-      }))
+    return this.http.post<any>(`${apiUrl}/auth/login`, logData, this.httpOptions)
   }
   logout() {
     return this.http.post(`${apiUrl}/auth/logout`, this.httpOptions).pipe(
@@ -67,7 +55,7 @@ export class UsersService {
   }
   updateUser(user: User, id: string): Observable<User> {
     console.log(`Mise à jour de l'utilisateur:  ${JSON.stringify(user)} envoyé à ${apiUrl}/signin/:${id}`);
-    return this.http.post<User>(`${apiUrl}/auth/signin/:${id}`, user).pipe(
+    return this.http.post<User>(`${apiUrl}/auth/:${id}/update`, user).pipe(
       tap(
         (res) => console.log(res)
       ),
