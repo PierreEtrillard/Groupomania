@@ -12,6 +12,7 @@ import { UsersService } from '../services/users.service';
 })
 export class AllPostsComponent implements OnInit {
   posts: Post[]
+  postUpdated:Post|undefined
   users: User[]
   currentUser: User
   faEraser = faEraser
@@ -29,22 +30,31 @@ export class AllPostsComponent implements OnInit {
       (obs) => { this.posts = obs })
     this.currentUser = JSON.parse(localStorage['userProfile'])
   }
-  isLiked(postId: string) {
+  isLiked(postId: string) {//test si le post est déja liké
     if (postId !== undefined && this.currentUser.myLikes !== undefined) {
       return this.currentUser.myLikes.includes(postId)
     } else {
       return false
     }
   }
+  postUpdater(postId:string){
+    this.postUpdated = this.posts.find(({id})=>{id === postId})
+    console.log(postId + this.postUpdated);
+    
+    if(this.postUpdated){
+    this.postUpdated.likers.push("one more like")}
+  }
   likeAction(postId: string) {
 
-    if (this.isLiked(postId) && this.currentUser.myLikes !== undefined) {
+    if (this.isLiked(postId) && this.currentUser.myLikes !== undefined) {// efface le like déja present dans l'objet utilisateur
       this.currentUser.myLikes = this.currentUser.myLikes.filter(
         (idList) => idList !== postId)
-    } else { if (this.currentUser.myLikes !== undefined) { this.currentUser.myLikes.push(postId) } }
-    //this.userservice updater le [mylikes]
-    console.table(this.currentUser.myLikes)
-    this.postsServices.likePost(postId, this.isLiked(postId)).subscribe()
+    } else { if (this.currentUser.myLikes !== undefined) { // ajoute un like
+      this.currentUser.myLikes.push(postId) } }
+    // post le choix à) l'api
+    this.postsServices.likePost(postId, this.isLiked(postId)).subscribe((res)=>{console.log("reponse de l'api:  "+ res.message);
+    this.postUpdater(postId)
+  })
   }
   addComment() {
     this.commentArea = true

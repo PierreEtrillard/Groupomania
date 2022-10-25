@@ -17,43 +17,37 @@ form {
   color: white;
   border: double 4px white;
   position: relative;
- }
- .post-section{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-    width: 95%;
-    margin: 20px;
-    .sub-section{
-        display: flex;
-        flex-direction: column;
-        margin: 10px;
-        margin-bottom: 70px;
-    }
-    label{
-        white-space: nowrap;
-    }
-    input {
-        margin: 10px;
-        background-color: $tertiaryColor;
-        color: white;
-        border-top: none;
-        border-left: none;
-        border-right: none;
-        border-bottom: solid white 3px;
-      }
- }
- fa-icon {
-    position: absolute;
-    bottom: -35px;
-    right: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    border: double $tertiaryColor 4px;
-    width: 70px;
-    height: 70px;
-    background-color: white;
-    color: $tertiaryColor;}
+}
+#title{
+  background-color: $secondaryColor;
+  color: $tertiaryColor;
+  text-align: center;
+  transform: translateY(-20px);
+  border: double 4px  $tertiaryColor;
+  border-radius: 20px;}
+#picsInput {
+  display: none;
+}
+textarea{
+  height: 30%;
+  background-color: $secondaryColor;
+  color: $tertiaryColor;
+  text-align: center;
+  transform: translateY(40px);
+  border: double 4px  $tertiaryColor;
+  border-radius: 20px;
+}
+fa-icon {
+  position: absolute;
+  bottom: -35px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: double $tertiaryColor 4px;
+  width: 70px;
+  height: 70px;
+  background-color: white;
+  color: $tertiaryColor;
+}

@@ -28,18 +28,14 @@ export class PostsService {
     })
     )
   }
-  newPost(post: Post): Observable<Post> {
-    console.log(`préparation de 'envoi du post: ${JSON.stringify(post)} vers ${apiUrl}/posts`);
+  newPost(post:FormData): Observable<Post> {
+    console.log(`préparation de 'envoi du post ${post} vers ${apiUrl}/posts`);
 
     return this.http.post<Post>(`${apiUrl}/posts`, post)
 
   }
-  likePost(postId: string,likeIt:boolean) {
-    console.log("likeIt vaut: "+ likeIt);
-    let like=""
-    likeIt? like="yes":like="no" 
-    
-    return this.http.post(`${apiUrl}/posts/${postId}/like`, `${like}`, this.httpOptions).pipe(catchError((err) => {
+  likePost(postId: string,likeIt:boolean) {     
+    return this.http.post(`${apiUrl}/posts/${postId}/like`, {likeIt:likeIt}, this.httpOptions).pipe(catchError((err) => {
       console.log(err);
       return of(err)
     }))

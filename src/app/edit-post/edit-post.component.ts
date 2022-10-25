@@ -10,31 +10,35 @@ import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
   styleUrls: ['./edit-post.component.scss']
 })
 export class EditPostComponent implements OnInit {
-  faPaperPlane=faPaperPlane
-  newPost: Post
-
-  public newPostForm: FormGroup;
+  faPaperPlane = faPaperPlane
+  image: File | null = null
+  newPostForm: FormGroup;
 
   constructor(private postsService: PostsService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.newPostForm = this.formBuilder.group({
       title: ["", Validators.required],
-      imageUrl: ["", ],
-      textContent: ["", ],
+      textContent: [""]
     })
   }
-  sendNewPost() {
-    this.newPost = {
-      likers:[],
-      id:"",
-      title: this.newPostForm.value.title,
-      textContent: this.newPostForm.value.textContent,
-      imageUrl: this.newPostForm.value.imageUrl,
-    };
-    console.log(`préparation de 'envoi du post: ${JSON.stringify(this.newPost)} vers api/posts`);
+  selectPic(event: any) {
+    this.image = event.target.files[0];
+    console.log(this.image);
+  }
+  sendNewPost(){
+    const newPost: any = new FormData()
+    newPost.append("likers", []);
+    newPost.append("title", this.newPostForm.value.title);
+    newPost.append("imageUrl", this.image,this.image?.name);
+    newPost.append("textContent", this.newPostForm.value.textContent);
 
-    return this.postsService.newPost(this.newPost).subscribe()
+    console.log(`préparation de 'envoi du post: ${newPost.title} vers api/posts`);
+
+    return this.postsService.newPost(newPost).subscribe({
+      next: (response) => console.log(response),
+      error: (error) => console.error(error),
+    })
   }
 }
 
