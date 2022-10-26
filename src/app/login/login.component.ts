@@ -12,7 +12,7 @@ import { UsersService } from '../services/users.service';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup
-  logData: User
+  logData: any
   catchResponse: any
   errorMsg:string=''
   constructor(private formBuilder: FormBuilder, private usersService: UsersService, private router: Router) { }
@@ -30,19 +30,18 @@ export class LoginComponent implements OnInit {
       email: this.loginForm.value.email,
       password: this.loginForm.value.password
     };
-    this.usersService.login(this.logData).pipe(
-      switchMap(() => this.usersService.login(this.logData)),
-      tap( (res) => {
-        this.catchResponse = res
+    this.usersService.login(this.logData)
+    .subscribe({
+      next: (response) => {
+        console.log(response)
+        this.catchResponse = response
         localStorage['userProfile']=JSON.stringify(this.catchResponse.userProfile)
-        this.router.navigate(['']);
-      }),
-      catchError(error => {
+        this.router.navigate([''])
+      },
+      error: (error) => {
         const errorStringified =JSON.stringify(error.error)
-        this.errorMsg = errorStringified.split('":"')[1];
-        console.error(error);        
-        return EMPTY;
-      })
-    ).subscribe();
+        this.errorMsg = errorStringified.split('"')[3]
+      },
+    })
   }
 }

@@ -9,5 +9,7 @@ photo?:string;
 myHobbies?:string;
 myLikes?:string[];
 myEvents?:string[];
-
+role?:string;
+lastConnectAt!:number;
+connectAt!:number;
 }

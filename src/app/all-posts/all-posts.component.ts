@@ -37,6 +37,9 @@ export class AllPostsComponent implements OnInit {
       return false
     }
   }
+  isNewPost(creationDate:number):void{
+    (this.currentUser.lastConnectAt <= creationDate)?  'card card-destroyable' : 'card'
+  }
   postUpdater(postId:string){
     this.postUpdated = this.posts.find(({id})=>{id === postId})
     console.log(postId + this.postUpdated);

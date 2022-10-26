@@ -1,8 +1,16 @@
 <header>
-    <a routerLink="/">
-        <img src="../../assets/images/icon-left-font-monochrome-white.png" class="clicked"alt="logo Groupomania">
-    </a>
-    <a (click)="disconnection()">
-        <fa-icon [icon]="faUpRightFromSquare" class="fa-2x clicked"></fa-icon>
-    </a>
+  <a routerLink="/">
+    <img
+      src="../../assets/images/icon-left-font-monochrome-white.png"
+      class="clicked logo"
+      alt="logo Groupomania"
+    />
+  </a>
+  <a (click)="disconnection()">
+    <fa-icon [icon]="faUpRightFromSquare" class="fa-2x clicked"></fa-icon>
+  </a>
+  <a *ngIf="currentUser" class="check-user">
+    <img id="photo-user" [src]="currentUser.photo" alt="votre photode profile" />
+    <h4 id="user-name">{{ currentUser.name }} connecté</h4>
+  </a>
 </header>

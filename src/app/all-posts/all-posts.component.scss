@@ -18,6 +18,11 @@ section.post-area {
     min-width: 60%;
     position: relative;
   }
+  .card-destroyable{
+    border: double 4px $primaryColor;
+    color:$primaryColor;
+    background-color: $secondaryColor;
+  }
 }
 .post-title {
   display: flex;

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Post } from '../models/post.model';
 import { PostsService } from '../services/posts.service';
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-post',
@@ -14,7 +15,8 @@ export class EditPostComponent implements OnInit {
   image: File | null = null
   newPostForm: FormGroup;
 
-  constructor(private postsService: PostsService, private formBuilder: FormBuilder) { }
+
+  constructor(private postsService: PostsService, private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
     this.newPostForm = this.formBuilder.group({
@@ -24,21 +26,19 @@ export class EditPostComponent implements OnInit {
   }
   selectPic(event: any) {
     this.image = event.target.files[0];
-    console.log(this.image);
   }
-  sendNewPost(){
+  sendNewPost() {
     const newPost: any = new FormData()
-    newPost.append("likers", []);
     newPost.append("title", this.newPostForm.value.title);
-    newPost.append("imageUrl", this.image,this.image?.name);
     newPost.append("textContent", this.newPostForm.value.textContent);
-
-    console.log(`préparation de 'envoi du post: ${newPost.title} vers api/posts`);
-
+    if (this.image) {
+      newPost.append("image", this.image, this.image?.name);
+    }
     return this.postsService.newPost(newPost).subscribe({
-      next: (response) => console.log(response),
+      next: (response) => { console.log(response); this.router.navigate([""]) },
       error: (error) => console.error(error),
     })
+
   }
 }
 

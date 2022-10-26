@@ -1,0 +1,54 @@
+<app-header></app-header>
+<main class="container">
+  <h1>Mon profil</h1>
+  <div class="card">
+    <form novalidate (ngSubmit)="sendProfile()" [formGroup]="updateProfileForm">
+      <img
+        (click)="changePhoto()"
+        [src]="actualProfile.photo"
+        alt="ma photo de profile"
+        class="photo-profile"
+      />
+      <input
+        id="photo"
+        accept="image/*"
+        aria-describedby="ma photo de profile"
+        type="file"
+        (change)="photoSelected($event)" 
+        class="form-control card-subtitle mb-2"
+        value="{{actualProfile.photo}}"
+      />
+
+      <input
+        id="name"
+        aria-describedby="nom d'utilisateur"
+        placeholder="{{ actualProfile.name }}"
+        type="text"
+        formControlName="name"
+        class="form-control card-subtitle mb-2"
+      />
+
+      <!-- <section class="card-title post-section form-group">
+        <div class="sub-section form-group">
+          <label class="card-title"> Dans la vie j'aime: </label>
+          <div *ngFor="let hobbie of actualProfile.myHobbies" class="hobbies">
+            <input
+              id="comment"
+              placeholder="ecrivez ici"
+              aria-describedby="image du post"
+              type="text"
+              formControlName="myHobbies"
+              class="form-control card-subtitle mb-2"
+            />
+          </div>
+        </div>
+      </section> -->
+      <fa-icon
+
+        type="submit"
+        [icon]="faFloppyDisk"
+        class="fa-2x clicked"
+      ></fa-icon>
+    </form>
+  </div>
+</main>

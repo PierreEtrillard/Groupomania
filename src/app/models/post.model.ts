@@ -3,7 +3,7 @@ export class Post {
     title!:string;
     author?:string;
     authorPhoto?:string;
-    createdAt?:Date;
+    createdAt?:number;
     imageUrl?:string;
     textContent!:string;
     comments?:string;

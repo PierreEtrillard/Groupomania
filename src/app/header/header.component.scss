@@ -1,27 +1,59 @@
 @import "../../scss/variables";
 @import "../../scss/mixins";
-.clicked {
-  transition: 0.1s;
-  &:active {
-    transform: rotateX(90deg);
-  }
-}
-img {
-  object-fit: contain;
-  width: 35%;
-}
+
 header {
   position: fixed;
   z-index: 10;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   height: 10%;
   width: 100%;
   @include linear-background;
+  fa-icon {
+    margin-right: 30px;
+    color: white;
+    cursor: pointer;
+  }
+  img.logo {
+    transition: 0.8s;
+    object-fit: contain;
+    width: 35%;
+    &:hover {
+      transform: rotateY(180deg);
+    }
+  }
 }
-fa-icon {
-  margin-right: 30px;
-  color: white;
-  cursor: pointer;
+a.check-user {
+  position: absolute;
+  bottom: -30px;
+  width: 100%;
+  border-radius: 20%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  #photo-user{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: double $primaryColor 5px;
+    width: 50px;
+    height: 50px;
+    object-fit: fill;
+  }
+  #user-name {
+    transform: scaleX(1.2);
+    z-index: -1;
+    background-color:  $tertiaryColor;
+    text-align: center;
+    padding-left: 30px;
+    width: 100%;
+    color: white;
+    border-bottom: double 5px $primaryColor;
+    border-top: double 5px $primaryColor;
+  }
+  
 }

@@ -28,10 +28,10 @@ export class PostsService {
     })
     )
   }
-  newPost(post:FormData): Observable<Post> {
+  newPost(post:FormData) {
     console.log(`préparation de 'envoi du post ${post} vers ${apiUrl}/posts`);
 
-    return this.http.post<Post>(`${apiUrl}/posts`, post)
+    return this.http.post(`${apiUrl}/posts`, post, this.httpOptions)
 
   }
   likePost(postId: string,likeIt:boolean) {     

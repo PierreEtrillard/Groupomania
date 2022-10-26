@@ -12,7 +12,7 @@ import { UsersService } from '../services/users.service';
 export class SigninComponent implements OnInit {
 
   public signinForm: FormGroup;
-  newUser: User
+  newUser: any
   catchResponse:any
   errorMsg: string = ''
   constructor(private usersService: UsersService, private formBuilder: FormBuilder, private router: Router) { }
