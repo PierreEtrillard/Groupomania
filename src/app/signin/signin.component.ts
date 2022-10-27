@@ -34,7 +34,6 @@ export class SigninComponent implements OnInit {
     };
     this.usersService.newUser(this.newUser).pipe(
       tap((res) => {
-        console.log(res);
         this.catchResponse = res
         localStorage['userProfile']=JSON.stringify(this.catchResponse.userProfile)
         this.router.navigate([''])

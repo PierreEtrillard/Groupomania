@@ -9,7 +9,6 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class UsersService {
-  isAuth$ = new BehaviorSubject<boolean>(false);
   catchResponse: any
   httpOptions: any = {
     mode: 'cors',
@@ -27,7 +26,6 @@ export class UsersService {
   logout() {
     return this.http.post(`${apiUrl}/auth/logout`, this.httpOptions).pipe(
       tap(() => {
-        this.isAuth$.next(false);
         document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });
         localStorage.clear()
         this.router.navigate(['login']);

@@ -16,11 +16,11 @@ header {
     cursor: pointer;
   }
   img.logo {
-    transition: 0.8s;
+    transition: 0.4s;
     object-fit: contain;
     width: 35%;
     &:hover {
-      transform: rotateY(180deg);
+      filter: grayscale(100deg);
     }
   }
 }
@@ -40,6 +40,8 @@ a.check-user {
     justify-content: center;
     border-radius: 50%;
     border: double $primaryColor 5px;
+    background-color: white;
+
     width: 50px;
     height: 50px;
     object-fit: fill;

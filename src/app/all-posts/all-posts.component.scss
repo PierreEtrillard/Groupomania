@@ -5,7 +5,7 @@ main {
 }
 
 section.post-area {
-  margin-top: 12%;
+  margin-top: 17%;
   width: 100%;
   display: flex;
   flex-direction: column-reverse;
@@ -17,19 +17,37 @@ section.post-area {
     border: double 4px $tertiaryColor;
     min-width: 60%;
     position: relative;
+    h6 {
+      margin-left: 15px;
+    }
   }
-  .card-destroyable{
+  .card-destroyable {
     border: double 4px $primaryColor;
-    color:$primaryColor;
+    color: $primaryColor;
     background-color: $secondaryColor;
   }
+  .post-content {
+    margin-top: 20px;
+  }
+}
+.new-post-notice {
+  position: absolute;
+  right: 5px;
+  color: purple;
+  font-weight: bold;
+  text-shadow: $tertiaryColor 5px 5px 10px;
+  transform: rotateZ(25deg);
+}
+.new-post-card {
+  box-shadow: purple 0px 0px 15px;
 }
 .post-title {
   display: flex;
   flex-direction: row;
-  transform: translateY(-35px);
+  position: absolute;
+  align-items: flex-end;
+  top: -38px;
   max-width: max-content;
-  background-color: white;
   img {
     display: flex;
     align-items: center;
@@ -40,6 +58,9 @@ section.post-area {
     height: 50px;
     object-fit: fill;
     margin-right: 10px;
+  }
+  .card-title {
+    background-color: white;
   }
 }
 .like-wrapper {
@@ -87,40 +108,5 @@ section.post-area {
   }
   .unliked-state {
     opacity: 0;
-  }
-}
-.comment-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  border: double $tertiaryColor 3px;
-  width: 50px;
-  height: 50px;
-  color: $tertiaryColor;
-  position: absolute;
-  background-color: white;
-  bottom: -25px;
-  right: 25px;
-}
-.comment-body {
-  width: 100%;
-}
-.comment-wrapper {
-  min-width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-end;
-  fa-icon,
-  h6 {
-    margin-left: 15px;
-  }
-  input {
-    width: 95%;
-    margin: 10px;
-    border-top: none;
-    border-left: none;
-    border-right: none;
   }
 }

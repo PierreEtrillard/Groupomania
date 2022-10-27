@@ -1,11 +1,21 @@
 <app-header></app-header>
 <main>
   <section class="post-area">
-    <div *ngFor="let post of posts" class="card" style="width: 18rem"
-    [ngClass]="post.author === currentUser.name && correctingMod||currentUser.role!=='normal'&& correctingMod?'card card-destroyable':'card'"
+    <div
+      *ngFor="let post of posts"
+      class="card"
+      style="width: 18rem"
+      [ngClass]="
+        (post.author === currentUser.name && correctingMod) ||
+        (currentUser.role !== 'normal' && correctingMod)
+          ? 'card card-destroyable'
+          : 'card'
+      "
+      [ngClass]="isNewPost(post.createdAt) ? 'new-post-card' : 'card-body'"
     >
-    <!-- [ngClass]="isNewPost(post.createdAt)" -->
-      <div class="card-body">
+      <!-- [ngClass]="isNewPost(post.createdAt)" -->
+      <div class="post-content">
+        <div *ngIf="isNewPost(post.createdAt)" class="new-post-notice">nouveau !</div>
         <div class="post-title">
           <img
             [src]="post.authorPhoto"
@@ -30,19 +40,8 @@
           {{ post.textContent }}
         </p>
       </div>
-      <div
-        (click)="addComment()"
-        [ngClass]="commentArea ? 'card comment-wrapper' : 'comment-btn'"
-      >
-        <fa-icon
-          [icon]="faCommenting"
-          class="fa-2x clicked comment-icon"
-        ></fa-icon>
-        <div *ngIf="commentArea" class="comment-body">
-          <input />
-        </div>
-      </div>
-      <div class="like-wrapper" (click)="likeAction(post.id)">
+
+      <div class="like-wrapper" (click)="likeAction(post.id,post.author)">
         <div [ngClass]="isLiked(post.id) ? 'liked-state' : 'unliked-state'">
           J'<fa-icon [icon]="faHeart" class="liked-heart"></fa-icon>ce post !
         </div>

@@ -14,34 +14,33 @@ export class MyProfileComponent implements OnInit {
   faFloppyDisk = faFloppyDisk
   actualProfile: User
   photoRetriver: boolean
-  file: File | null = null
+  photo: File | null = null
   updateProfileForm: FormGroup;
   constructor(private usersService: UsersService, private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
     this.actualProfile = JSON.parse(localStorage['userProfile'])
     this.updateProfileForm = this.formBuilder.group({
-      name: [this.actualProfile.name||""],
-      photo: [this.actualProfile.photo],
+      name: [this.actualProfile.name || ""],
       email: [this.actualProfile.email, Validators.email],
     })
-    
+
   }
   changePhoto() {
     this.photoRetriver = true
   }
-  photoSelected(event: Event) {
-    this.file = (event.target as HTMLInputElement).files![0]
-    this.actualProfile.photo = this.file.name
-    console.log(this.file.name);
-    
+  photoSelected(event: any) {
+    this.photo = event.target.files[0]
   }
   sendProfile() {
-    const formData = new FormData()
-    // formData.append("name", this.updateProfileForm.get('name').value)
-    // formData.append("photo", this.updateProfileForm.get('photo').value)
-    console.table(formData);
-  
+    const updatedProfile = new FormData()
+    if (this.photo) {
+      updatedProfile.append("photo", this.photo, this.photo?.name)
+    }
+    updatedProfile.append("name", this.updateProfileForm.value.name)
+    updatedProfile.append("email", this.updateProfileForm.value.email)
+    console.table(updatedProfile);
+
 
   }
 }

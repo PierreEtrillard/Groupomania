@@ -12,7 +12,7 @@ import { UsersService } from '../services/users.service';
 })
 export class AllPostsComponent implements OnInit {
   posts: Post[]
-  postUpdated:Post|undefined
+  postUpdated: Post | undefined
   users: User[]
   currentUser: User
   faEraser = faEraser
@@ -26,10 +26,20 @@ export class AllPostsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.postsServices.getAllPosts().subscribe(
-      (obs) => { this.posts = obs })
+    this.postsServices.getAllPosts().subscribe((postArray) => {
+      this.posts = postArray;
+      localStorage['allPosts'] = JSON.stringify(this.posts)
+    })
     this.currentUser = JSON.parse(localStorage['userProfile'])
   }
+
+  isNewPost(creationDate: number | undefined): boolean {
+    if (creationDate != undefined) {
+      return (this.currentUser.lastConnectAt <= creationDate)
+    }
+    else { return false }
+  }
+
   isLiked(postId: string) {//test si le post est déja liké
     if (postId !== undefined && this.currentUser.myLikes !== undefined) {
       return this.currentUser.myLikes.includes(postId)
@@ -37,32 +47,23 @@ export class AllPostsComponent implements OnInit {
       return false
     }
   }
-  isNewPost(creationDate:number):void{
-    (this.currentUser.lastConnectAt <= creationDate)?  'card card-destroyable' : 'card'
-  }
-  postUpdater(postId:string){
-    this.postUpdated = this.posts.find(({id})=>{id === postId})
-    console.log(postId + this.postUpdated);
-    
-    if(this.postUpdated){
-    this.postUpdated.likers.push("one more like")}
-  }
-  likeAction(postId: string) {
-
-    if (this.isLiked(postId) && this.currentUser.myLikes !== undefined) {// efface le like déja present dans l'objet utilisateur
+  likeAction(postId: string, postAuthor: string) {
+    const targetedPost = this.posts.find(post => post.id === postId)
+    if (this.isLiked(postId) && this.currentUser.myLikes && targetedPost ) {// efface le like déja present dans l'objet utilisateur
       this.currentUser.myLikes = this.currentUser.myLikes.filter(
-        (idList) => idList !== postId)
-    } else { if (this.currentUser.myLikes !== undefined) { // ajoute un like
-      this.currentUser.myLikes.push(postId) } }
-    // post le choix à) l'api
-    this.postsServices.likePost(postId, this.isLiked(postId)).subscribe((res)=>{console.log("reponse de l'api:  "+ res.message);
-    this.postUpdater(postId)
-  })
+        (postsIds) => postsIds !== postId)
+      targetedPost.likers = targetedPost.likers.filter(
+        (lkersIds) => lkersIds !== this.currentUser.name)
+        
+      } else {
+      if (this.currentUser.myLikes !== undefined && postAuthor !== this.currentUser.name) { // ajoute un like 
+        targetedPost?.likers.push(this.currentUser.name)
+        this.currentUser.myLikes.push(postId)
+      }
+    }//traitement dans le localstorage pour eviter une requète
+    localStorage['allPosts'] = JSON.stringify(this.posts)
+    localStorage['userProfile'] = JSON.stringify(this.currentUser)
+    // mise à jour de la BDD faite par l'API
+    this.postsServices.likePost(postId, this.isLiked(postId)).subscribe(console.log)
   }
-  addComment() {
-    this.commentArea = true
-    // console.table(this.currentUser.myLikes)
-    // console.table(this.posts)
-  }
-
 }

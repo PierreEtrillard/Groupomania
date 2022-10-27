@@ -1,61 +1,69 @@
-<div class="container"><h1>
+<div class="container">
+  <h1>
     <img
       src="../../assets/images/icon-left-font-monochrome-white.png"
       alt="logo Groupomania"
     />Connexion
   </h1>
-  
-    
-    <form novalidate (ngSubmit)="onLogin()" [formGroup]="loginForm" class="login">
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input
-          id="email"
-          class="form-control"
-          aria-describedby="votre prénom"
-          type="text"
-          formControlName="email"
-          placeholder="example@mail.com"
-          [ngClass]="{
-            'is-invalid': loginForm.controls['email'].touched && !loginForm.controls['email'].valid
-          }"
-          [ngClass]="{
-            'is-valid': loginForm.controls['email'].touched && loginForm.controls['email'].valid
-          }"
-        />
-        <small
-          *ngIf="loginForm.controls['email'].errors"
-          id="emailAssistant"
-          class="invalid-feedback mb-3"
-          ><span>Ce champ dois contenir au moins 2 caractères</span></small
-        >
-      </div>
-      <div class="form-group">
-        <label for="password"
-          >Mot de passe</label
-        >
-        <input
-          type="password"
-          class="form-control"
-          id="password"
-          placeholder="**************"
-          formControlName="password"
-          [ngClass]="{
-            'is-invalid': loginForm.controls['password'].touched && !loginForm.controls['password'].valid
-          }"
-          [ngClass]="{
-            'is-valid': loginForm.controls['password'].touched && loginForm.controls['password'].valid
-          }"
-        />
-        <small
+
+  <form novalidate (ngSubmit)="onLogin()" [formGroup]="loginForm" class="login">
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        id="email"
+        class="form-control"
+        aria-describedby="votre prénom"
+        type="text"
+        formControlName="email"
+        placeholder="example@mail.com"
+        [ngClass]="{
+          'is-invalid':
+            loginForm.controls['email'].touched &&
+            !loginForm.controls['email'].valid
+        }"
+        [ngClass]="{
+          'is-valid':
+            loginForm.controls['email'].touched &&
+            loginForm.controls['email'].valid
+        }"
+      />
+      <small
+        *ngIf="loginForm.controls['email'].errors"
+        id="emailAssistant"
+        class="invalid-feedback mb-3"
+        ><span>Ce champ dois contenir au moins 2 caractères</span></small
+      >
+    </div>
+    <div class="form-group">
+      <label for="password">Mot de passe</label>
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        placeholder="**************"
+        formControlName="password"
+        [ngClass]="{
+          'is-invalid':
+            loginForm.controls['password'].touched &&
+            !loginForm.controls['password'].valid
+        }"
+        [ngClass]="{
+          'is-valid':
+            loginForm.controls['password'].touched &&
+            loginForm.controls['password'].valid
+        }"
+      />
+      <small
         *ngIf="loginForm.controls['password'].errors"
-          id="mailAssistant"
-          class="invalid-feedback mb-3"
-          ><span>Mot de passe trop cours</span></small
-        >
-      </div>
-      <button [ngClass]="{'btn-gpm-invalid':loginForm.invalid}" [ngClass]="{'btn-gpm':loginForm.valid}"type="submit">Je me connecte</button>
-      <p class="error" *ngIf="errorMsg">{{errorMsg}}</p>
-      <a routerLink="/signin">Pas encore de compte ?</a>
+        id="mailAssistant"
+        class="invalid-feedback mb-3"
+        ><span>Mot de passe trop cours</span></small
+      >
+    </div>
+    <button *ngIf="loginForm.valid" class="btn-gpm" type="submit">
+      Je me connecte
+    </button>
+    <p class="error" *ngIf="errorMsg">{{ errorMsg }}</p>
+    <a routerLink="/signin">Pas encore de compte ?</a>
   </form>
 </div>

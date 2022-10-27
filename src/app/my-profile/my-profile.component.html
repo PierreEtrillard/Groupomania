@@ -27,24 +27,15 @@
         formControlName="name"
         class="form-control card-subtitle mb-2"
       />
-
-      <!-- <section class="card-title post-section form-group">
-        <div class="sub-section form-group">
-          <label class="card-title"> Dans la vie j'aime: </label>
-          <div *ngFor="let hobbie of actualProfile.myHobbies" class="hobbies">
-            <input
-              id="comment"
-              placeholder="ecrivez ici"
-              aria-describedby="image du post"
-              type="text"
-              formControlName="myHobbies"
-              class="form-control card-subtitle mb-2"
-            />
-          </div>
-        </div>
-      </section> -->
+      <input
+        id="email"
+        aria-describedby="nom d'utilisateur"
+        placeholder="{{ actualProfile.email }}"
+        type="email"
+        formControlName="email"
+        class="form-control card-subtitle mb-2"
+      />
       <fa-icon
-
         type="submit"
         [icon]="faFloppyDisk"
         class="fa-2x clicked"
