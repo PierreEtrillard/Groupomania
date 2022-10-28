@@ -1,20 +1,30 @@
 @import "../../scss/variables";
 @import "../../scss/keyframes";
 nav {
-  display: flex;
   position: fixed;
-  flex-direction: column;
-  min-height: 100%;
-  right: 0;
   align-items: flex-start;
   justify-content: space-evenly;
   background-color: $tertiaryColor;
+  /* version desktop*/
+  // flex-direction: column;
+  // display: flex;
+  // right: 0;
+  // min-height: 100%;
+  //version mobile
+  height: 30px;
+  flex-direction: row;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
 .icon-wrapper {
+  //version desktop:
+  // transform: translateX(-30px);
+  //version mobile:
+  transform: translateY(-30px);
   display: flex;
   align-items: center;
   justify-content: center;
-  transform: translateX(-30px);
   border-radius: 50%;
   border: double $tertiaryColor 4px;
   width: 70px;
@@ -24,28 +34,28 @@ nav {
   transition: 0.5s;
   position: relative;
   &:hover {
-    transform: rotateY(180deg) translateX(30px);
-    background-color:$tertiaryColor;
+    transform: rotateY(-180deg) translateY(-50px);;
+    background-color: $tertiaryColor;
     color: white;
     border: double white 4px;
   }
-  &::after{
+  &::after {
     position: absolute;
   }
 }
-.icon-description {
-    position: absolute;
-    right: 0;
-  display: flex;
-  align-items: center;
-  transition: 0.5s;
-  background-color: $tertiaryColor;
-  color: white;
-  white-space: nowrap;
-  height: 70px;
-  z-index: -1;
-  transform: scaleX(0);
-  &:hover {
-    transform: scaleX(1);
-  }
-}
+// .icon-description {
+//   position: absolute;
+//   right: 0;
+//   display: flex;
+//   align-items: center;
+//   transition: 0.5s;
+//   background-color: $tertiaryColor;
+//   color: white;
+//   white-space: nowrap;
+//   height: 70px;
+//   z-index: -1;
+//   transform: scaleX(0);
+//   &:hover {
+//     transform: scaleX(1);
+//   }
+// }

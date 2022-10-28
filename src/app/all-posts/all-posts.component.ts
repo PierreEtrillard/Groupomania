@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Post } from '../models/post.model';
 import { PostsService } from '../services/posts.service';
-import { faEraser, faCommenting, faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faEraser, faCommenting, faHeart ,faPen} from "@fortawesome/free-solid-svg-icons";
 import { User } from '../models/user.model';
 import { UsersService } from '../services/users.service';
 
@@ -15,11 +15,12 @@ export class AllPostsComponent implements OnInit {
   postUpdated: Post | undefined
   users: User[]
   currentUser: User
-  faEraser = faEraser
   faCommenting = faCommenting
+  faEraser = faEraser
   faHeart = faHeart
+  faPen = faPen
   commentArea: boolean = false
-  correctingMod: boolean = false
+  correctingMod: boolean
   constructor(
     private postsServices: PostsService,
     private usersServices: UsersService

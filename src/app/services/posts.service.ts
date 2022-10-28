@@ -10,9 +10,7 @@ const apiUrl = environment.apiUrl;
   providedIn: 'root'
 })
 export class PostsService {
-
-  allPosts$ = new Subject<Post[]>;
-  postTargeted: Post
+correctingMod:boolean=false
   constructor(
     private http: HttpClient, private router: Router
   ) { }
@@ -40,4 +38,9 @@ export class PostsService {
       return of(err)
     }))
   }
+  eraserSwitch(){
+    this.correctingMod? this.correctingMod=false : this.correctingMod=true
+    console.log("this.correctingMod: "+this.correctingMod);
+    
+   }
 }

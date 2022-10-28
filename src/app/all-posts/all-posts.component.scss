@@ -2,6 +2,8 @@
 @import "../../scss/keyframes";
 main {
   display: flex;
+  // version mobile
+  flex-direction: column;
 }
 
 section.post-area {
