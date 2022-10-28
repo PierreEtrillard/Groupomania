@@ -21,26 +21,22 @@ export class MyProfileComponent implements OnInit {
   ngOnInit(): void {
     this.actualProfile = JSON.parse(localStorage['userProfile'])
     this.updateProfileForm = this.formBuilder.group({
-      name: [this.actualProfile.name || ""],
+      name: [""],
       email: [this.actualProfile.email, Validators.email],
     })
-
-  }
-  changePhoto() {
-    this.photoRetriver = true
   }
   photoSelected(event: any) {
     this.photo = event.target.files[0]
   }
-  sendProfile() {
+  sendProfileUpdated() {
     const updatedProfile = new FormData()
     if (this.photo) {
-      updatedProfile.append("photo", this.photo, this.photo?.name)
+      updatedProfile.append("image", this.photo, this.photo?.name)
     }
     updatedProfile.append("name", this.updateProfileForm.value.name)
     updatedProfile.append("email", this.updateProfileForm.value.email)
-    console.table(updatedProfile);
-
+    // console.table(updatedProfile);
+    return this.usersService.updateUser(updatedProfile).subscribe()
 
   }
 }

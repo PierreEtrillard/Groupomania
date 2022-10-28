@@ -25,11 +25,11 @@ export class PostsService {
     })
     )
   }
+  getOnePost(postId:string): Observable<any> {
+    return this.http.get(`${apiUrl}/posts/${postId}`, this.httpOptions)
+  }
   newPost(post:FormData) {
-    console.log(`préparation de 'envoi du post ${post} vers ${apiUrl}/posts`);
-
     return this.http.post(`${apiUrl}/posts`, post, this.httpOptions)
-
   }
   likePost(postId: string,likeIt:boolean) {     
     return this.http.post(`${apiUrl}/posts/${postId}/like`, {likeIt:likeIt}, this.httpOptions).pipe(catchError((err) => {

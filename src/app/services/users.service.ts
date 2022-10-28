@@ -51,9 +51,9 @@ export class UsersService {
         return of()
       }))
   }
-  updateUser(user: User, id: string): Observable<User> {
-    console.log(`Mise à jour de l'utilisateur:  ${JSON.stringify(user)} envoyé à ${apiUrl}/signin/:${id}`);
-    return this.http.post<User>(`${apiUrl}/auth/:${id}/update`, user).pipe(
+  updateUser(userUpdated: FormData) {
+    console.log(`Mise à jour de l'utilisateur:  ${JSON.stringify(userUpdated)} envoyé à ${apiUrl}/auth/update`);
+    return this.http.post<User>(`${apiUrl}/auth/update`, userUpdated,this.httpOptions).pipe(
       tap(
         (res) => console.log(res)
       ),

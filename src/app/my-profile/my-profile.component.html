@@ -2,44 +2,51 @@
 <main class="container">
   <h1>Mon profil</h1>
   <div class="card">
-    <form novalidate (ngSubmit)="sendProfile()" [formGroup]="updateProfileForm">
+    <form
+      novalidate
+      (ngSubmit)="sendProfileUpdated()"
+      [formGroup]="updateProfileForm"
+    >
       <img
-        (click)="changePhoto()"
         [src]="actualProfile.photo"
-        alt="ma photo de profile"
+        alt="ma photo de profile actuelle"
         class="photo-profile"
       />
+      <div class="name">{{ actualProfile.name }}</div>
+      <label for="photo">je change ma photo de profile:</label>
       <input
         id="photo"
         accept="image/*"
         aria-describedby="ma photo de profile"
         type="file"
-        (change)="photoSelected($event)" 
+        (change)="photoSelected($event)"
         class="form-control card-subtitle mb-2"
-        value="{{actualProfile.photo}}"
       />
-
+      <!-- value="{{actualProfile.photo}}" -->
+      <label for="name">Je change mon nom d'utilisateur:</label>
       <input
         id="name"
         aria-describedby="nom d'utilisateur"
-        placeholder="{{ actualProfile.name }}"
         type="text"
+        placeholder="indiquez ici votre nom ou pseudo"
         formControlName="name"
         class="form-control card-subtitle mb-2"
       />
+
+      <label for="email">mon email (est requis lors de la connexion)</label>
       <input
         id="email"
         aria-describedby="nom d'utilisateur"
         placeholder="{{ actualProfile.email }}"
+        value="{{ actualProfile.email }}"
         type="email"
         formControlName="email"
         class="form-control card-subtitle mb-2"
       />
-      <fa-icon
-        type="submit"
-        [icon]="faFloppyDisk"
-        class="fa-2x clicked"
-      ></fa-icon>
+      <button type="submit">
+        <fa-icon [icon]="faFloppyDisk" class="fa-2x clicked"></fa-icon>
+      </button>
+      <div *ngIf="updateProfileForm.valid">formulaire prêt</div>
     </form>
   </div>
 </main>

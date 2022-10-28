@@ -29,11 +29,11 @@ export class EditPostComponent implements OnInit {
   }
   sendNewPost() {
     const newPost: any = new FormData()
-    newPost.append("title", this.newPostForm.value.title);
-    newPost.append("textContent", this.newPostForm.value.textContent);
     if (this.image) {
       newPost.append("image", this.image, this.image?.name);
     }
+    newPost.append("title", this.newPostForm.value.title);
+    newPost.append("textContent", this.newPostForm.value.textContent);
     return this.postsService.newPost(newPost).subscribe({
       next: (response) => { console.log(response); this.router.navigate([""]) },
       error: (error) => console.error(error),
