@@ -20,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { PostCorrectorComponent } from './post-corrector/post-corrector.component';
 import { FavoriesComponent } from './favories/favories.component';
+import { PostComponent } from './post/post.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { FavoriesComponent } from './favories/favories.component';
     NavbarComponent,
     MyProfileComponent,
     PostCorrectorComponent,
-    FavoriesComponent
+    FavoriesComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule,

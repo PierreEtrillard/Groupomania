@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Post } from '../models/post.model';
 import { PostsService } from '../services/posts.service';
-import { faEraser, faCommenting, faHeart ,faMagnifyingGlassPlus} from "@fortawesome/free-solid-svg-icons";
+import { faEraser, faCommenting, faHeart, faMagnifyingGlassPlus } from "@fortawesome/free-solid-svg-icons";
 import { User } from '../models/user.model';
 import { UsersService } from '../services/users.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-all-posts',
@@ -22,7 +23,7 @@ export class AllPostsComponent implements OnInit {
   commentArea: boolean = false
   constructor(
     private postsServices: PostsService,
-    private usersServices: UsersService
+    private router:Router
   ) { }
 
   ngOnInit(): void {
@@ -49,13 +50,13 @@ export class AllPostsComponent implements OnInit {
   }
   likeAction(postId: string, postAuthor: string) {
     const targetedPost = this.posts.find(post => post.id === postId)
-    if (this.isLiked(postId) && this.currentUser.myLikes && targetedPost ) {// efface le like déja present dans l'objet utilisateur
+    if (this.isLiked(postId) && this.currentUser.myLikes && targetedPost) {// efface le like déja present dans l'objet utilisateur
       this.currentUser.myLikes = this.currentUser.myLikes.filter(
         (postsIds) => postsIds !== postId)
       targetedPost.likers = targetedPost.likers.filter(
         (lkersIds) => lkersIds !== this.currentUser.name)
-        
-      } else {
+
+    } else {
       if (this.currentUser.myLikes !== undefined && postAuthor !== this.currentUser.name) { // ajoute un like 
         targetedPost?.likers.push(this.currentUser.name)
         this.currentUser.myLikes.push(postId)
@@ -65,5 +66,12 @@ export class AllPostsComponent implements OnInit {
     localStorage['userProfile'] = JSON.stringify(this.currentUser)
     // mise à jour de la BDD faite par l'API
     this.postsServices.likePost(postId, this.isLiked(postId)).subscribe(console.log)
+  }
+  showDetails(postId:string,postAuthor:string){
+    if (postAuthor===this.currentUser.name){
+      this.router.navigate([`corrector/${postId}`])
+    }else{
+      this.router.navigate([`post/${postId}`])
+    }
   }
 }

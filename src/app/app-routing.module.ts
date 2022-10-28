@@ -6,6 +6,7 @@ import { FavoriesComponent } from './favories/favories.component';
 import { LoginComponent } from './login/login.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { PostCorrectorComponent } from './post-corrector/post-corrector.component';
+import { PostComponent } from './post/post.component';
 import { SigninComponent } from './signin/signin.component';
 import { WrongWayComponent } from './wrong-way/wrong-way.component';
 
@@ -17,6 +18,7 @@ const routes: Routes = [
 {path:'myprofile', component: MyProfileComponent},
 {path:'favories', component: FavoriesComponent},
 {path:'corrector/:id', component: PostCorrectorComponent},
+{path:'post/:id', component: PostComponent},
 {path:'**', component: WrongWayComponent},
 
 ];

@@ -46,7 +46,7 @@
           <div class="score">{{ post.likers.length }}</div>
         </div>
       </div>
-      <div class="detail">
+      <div class="detail" (click)="showDetails(post.id,post.author)">
         <fa-icon [icon]="faMagnifyingGlassPlus"></fa-icon></div>
     </div>
   </section>
