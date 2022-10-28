@@ -5,17 +5,13 @@
       *ngFor="let post of posts"
       class="card"
       style="width: 18rem"
-      [ngClass]="
-        (post.author === currentUser.name && correctingMod) ||
-        (currentUser.role !== 'normal' && correctingMod)
-          ? 'card card-destroyable'
-          : 'card'
-      "
       [ngClass]="isNewPost(post.createdAt) ? 'new-post-card' : 'card-body'"
     >
       <!-- [ngClass]="isNewPost(post.createdAt)" -->
       <div class="post-content">
-        <div *ngIf="isNewPost(post.createdAt)" class="new-post-notice">nouveau !</div>
+        <div *ngIf="isNewPost(post.createdAt)" class="new-post-notice">
+          nouveau !
+        </div>
         <div class="post-title">
           <img
             [src]="post.authorPhoto"
@@ -41,7 +37,7 @@
         </p>
       </div>
 
-      <div class="like-wrapper" (click)="likeAction(post.id,post.author)">
+      <div class="like-wrapper" (click)="likeAction(post.id, post.author)">
         <div [ngClass]="isLiked(post.id) ? 'liked-state' : 'unliked-state'">
           J'<fa-icon [icon]="faHeart" class="liked-heart"></fa-icon>ce post !
         </div>
@@ -50,6 +46,8 @@
           <div class="score">{{ post.likers.length }}</div>
         </div>
       </div>
+      <div class="detail">
+        <fa-icon [icon]="faMagnifyingGlassPlus"></fa-icon></div>
     </div>
   </section>
   <app-navbar></app-navbar>

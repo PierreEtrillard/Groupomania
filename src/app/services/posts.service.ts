@@ -10,7 +10,6 @@ const apiUrl = environment.apiUrl;
   providedIn: 'root'
 })
 export class PostsService {
-correctingMod:boolean=false
   constructor(
     private http: HttpClient, private router: Router
   ) { }
@@ -38,9 +37,5 @@ correctingMod:boolean=false
       return of(err)
     }))
   }
-  eraserSwitch(){
-    this.correctingMod? this.correctingMod=false : this.correctingMod=true
-    console.log("this.correctingMod: "+this.correctingMod);
-    
-   }
+
 }

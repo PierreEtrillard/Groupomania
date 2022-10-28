@@ -11,7 +11,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { SigninComponent } from './signin/signin.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeaderComponent } from './header/header.component';
 import { EditPostComponent } from './edit-post/edit-post.component';
 import { WrongWayComponent } from './wrong-way/wrong-way.component';
@@ -19,19 +18,22 @@ import { AllPostsComponent } from './all-posts/all-posts.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MyProfileComponent } from './my-profile/my-profile.component';
+import { PostCorrectorComponent } from './post-corrector/post-corrector.component';
+import { FavoriesComponent } from './favories/favories.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SigninComponent,
-    DashboardComponent,
     HeaderComponent,
     EditPostComponent,
     WrongWayComponent,
     AllPostsComponent,
     NavbarComponent,
-    MyProfileComponent
+    MyProfileComponent,
+    PostCorrectorComponent,
+    FavoriesComponent
   ],
   imports: [
     BrowserModule,

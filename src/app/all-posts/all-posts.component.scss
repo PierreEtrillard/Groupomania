@@ -22,18 +22,15 @@ section.post-area {
     h6 {
       margin-left: 15px;
     }
+    .post-content {
+      margin-top: 20px;
+    }
   }
-  .card-destroyable {
-    border: double 4px $primaryColor;
-    color: $primaryColor;
-    background-color: $secondaryColor;
-  }
-  .post-content {
-    margin-top: 20px;
-  }
+  
 }
 .new-post-notice {
   position: absolute;
+  top: 0;
   right: 5px;
   color: purple;
   font-weight: bold;
@@ -70,9 +67,8 @@ section.post-area {
   flex-direction: column;
   max-width: max-content;
   position: absolute;
-  position: relative;
-  bottom: -65px;
-  left: 35px;
+  bottom: -70px;
+  left: 25px;
   align-items: center;
   justify-content: center;
   font-size: 1.8em;
@@ -112,3 +108,15 @@ section.post-area {
     opacity: 0;
   }
 }
+.detail {
+  position: absolute;
+  right:25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+bottom: -20px;
+border-radius: 20px;
+width: 30px;
+height: 30px;
+background-color: $tertiaryColor;
+color: white;}
