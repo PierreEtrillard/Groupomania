@@ -16,6 +16,9 @@ header {
     cursor: pointer;
   }
   img.logo {
+    position:absolute;
+    left: 30%;
+    top: 30%;
     transition: 0.4s;
     object-fit: contain;
     width: 35%;

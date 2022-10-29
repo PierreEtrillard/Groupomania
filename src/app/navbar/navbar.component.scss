@@ -42,6 +42,9 @@ nav {
   &::after {
     position: absolute;
   }
+  .actived{
+    color: $primaryColor;
+  }
 }
 // .icon-description {
 //   position: absolute;

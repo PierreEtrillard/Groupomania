@@ -21,6 +21,7 @@ export class AllPostsComponent implements OnInit {
   faHeart = faHeart
   faMagnifyingGlassPlus = faMagnifyingGlassPlus
   message: string
+  correctingMod: boolean
   constructor(
     private postsServices: PostsService,
     private router: Router
@@ -65,7 +66,7 @@ export class AllPostsComponent implements OnInit {
         this.currentUser.myLikes.push(postId)
       }
     }
-    setTimeout(()=>{this.message=""},3000)
+    setTimeout(() => { this.message = "" }, 3000)
     //traitement dans le localstorage pour eviter une requète
     localStorage['allPosts'] = JSON.stringify(this.posts)
     localStorage['userProfile'] = JSON.stringify(this.currentUser)
@@ -77,6 +78,23 @@ export class AllPostsComponent implements OnInit {
       this.router.navigate([`corrector/${postId}`])
     } else {
       this.router.navigate([`post/${postId}`])
+    }
+  }
+  correctable(postAuthor: string) {
+    this.correctingMod = localStorage['correctingMod']
+    if (postAuthor === this.currentUser.name && this.correctingMod) {
+      return true
+    } else {
+      return false
+    }
+  }
+  erraseOrCorrect(postId: string, postAuthor: string) {
+    if (this.correctingMod && this.currentUser.role !== 'normal') {
+      this.postsServices.deleteOne(postId).subscribe(console.log
+      )
+    }
+    if (postAuthor === this.currentUser.name) {
+      this.router.navigate([`corrector/${postId}`])
     }
   }
 }

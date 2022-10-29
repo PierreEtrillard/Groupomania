@@ -7,7 +7,9 @@
     class="card"
     style="width: 18rem"
     [ngClass]="isNewPost(post.createdAt) ? 'new-post-card' : 'card-body'"
-    >
+    [ngClass]="correctable(post.author) ? 'new-post-card' : 'card-body'"
+    (click)="erraseOrCorrect(post.id,post.author)"
+        >
       <div class="post-content">
         <div *ngIf="isNewPost(post.createdAt)" class="new-post-notice">
           nouveau !

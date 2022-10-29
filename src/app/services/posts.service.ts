@@ -37,5 +37,10 @@ export class PostsService {
       return of(err)
     }))
   }
-
+  deleteOne(postId: string){
+    return this.http.delete(`${apiUrl}/posts/${postId}/delete`, this.httpOptions)
+  }
+  updateOne(postId: string){
+    return this.http.put(`${apiUrl}/posts/${postId}/update`, this.httpOptions)
+  }
 }

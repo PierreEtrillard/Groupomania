@@ -52,7 +52,7 @@ export class UsersService {
       }))
   }
   updateUser(userUpdated: FormData) {
-    return this.http.post<User>(`${apiUrl}/auth/update`, userUpdated,this.httpOptions).pipe(
+    return this.http.put<User>(`${apiUrl}/auth/update`, userUpdated,this.httpOptions).pipe(
       tap(
         (res) => {
           this.catchResponse = res
