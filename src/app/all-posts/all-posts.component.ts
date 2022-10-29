@@ -20,10 +20,10 @@ export class AllPostsComponent implements OnInit {
   faEraser = faEraser
   faHeart = faHeart
   faMagnifyingGlassPlus = faMagnifyingGlassPlus
-  commentArea: boolean = false
+  message: string
   constructor(
     private postsServices: PostsService,
-    private router:Router
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -50,6 +50,9 @@ export class AllPostsComponent implements OnInit {
   }
   likeAction(postId: string, postAuthor: string) {
     const targetedPost = this.posts.find(post => post.id === postId)
+    if (this.currentUser.myLikes !== undefined && postAuthor === this.currentUser.name) {
+      this.message = "vous ne pouvez pas liker vos propres posts"
+    }
     if (this.isLiked(postId) && this.currentUser.myLikes && targetedPost) {// efface le like déja present dans l'objet utilisateur
       this.currentUser.myLikes = this.currentUser.myLikes.filter(
         (postsIds) => postsIds !== postId)
@@ -61,16 +64,18 @@ export class AllPostsComponent implements OnInit {
         targetedPost?.likers.push(this.currentUser.name)
         this.currentUser.myLikes.push(postId)
       }
-    }//traitement dans le localstorage pour eviter une requète
+    }
+    setTimeout(()=>{this.message=""},3000)
+    //traitement dans le localstorage pour eviter une requète
     localStorage['allPosts'] = JSON.stringify(this.posts)
     localStorage['userProfile'] = JSON.stringify(this.currentUser)
     // mise à jour de la BDD faite par l'API
     this.postsServices.likePost(postId, this.isLiked(postId)).subscribe(console.log)
   }
-  showDetails(postId:string,postAuthor:string){
-    if (postAuthor===this.currentUser.name){
+  showDetails(postId: string, postAuthor: string) {
+    if (postAuthor === this.currentUser.name) {
       this.router.navigate([`corrector/${postId}`])
-    }else{
+    } else {
       this.router.navigate([`post/${postId}`])
     }
   }

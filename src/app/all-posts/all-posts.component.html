@@ -1,13 +1,13 @@
 <app-header></app-header>
 <main>
+  <div *ngIf="message !== ''" class="message">{{message}}</div>
   <section class="post-area">
     <div
-      *ngFor="let post of posts"
-      class="card"
-      style="width: 18rem"
-      [ngClass]="isNewPost(post.createdAt) ? 'new-post-card' : 'card-body'"
+    *ngFor="let post of posts"
+    class="card"
+    style="width: 18rem"
+    [ngClass]="isNewPost(post.createdAt) ? 'new-post-card' : 'card-body'"
     >
-      <!-- [ngClass]="isNewPost(post.createdAt)" -->
       <div class="post-content">
         <div *ngIf="isNewPost(post.createdAt)" class="new-post-notice">
           nouveau !
@@ -21,7 +21,7 @@
           <h5 class="card-title">{{ post.title | titlecase }}</h5>
         </div>
         <h6 class="card-subtitle mb-2 text-muted">
-          de {{ post.author | uppercase }}
+          de {{ post.author }}
         </h6>
         <h6 class="card-subtitle mb-2 text-muted">
           le {{ post.createdAt | date: "dd MMMM. à HH:mm" }}

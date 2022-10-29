@@ -34,8 +34,10 @@ form.login {
     cursor: pointer;
   }
 }
-p.error{color:$tertiaryColor;
+p.error{
+color:$tertiaryColor;
 font-weight: bold;
 text-align: center;
 background-color: $secondaryColor;
-animation: box-deployment 0.4s}
+animation: box-deployment 2s both
+}

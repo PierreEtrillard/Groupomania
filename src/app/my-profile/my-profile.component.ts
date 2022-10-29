@@ -16,12 +16,15 @@ export class MyProfileComponent implements OnInit {
   photoRetriver: boolean
   photo: File | null = null
   updateProfileForm: FormGroup;
-  constructor(private usersService: UsersService, private formBuilder: FormBuilder, private router: Router) { }
+  constructor(
+    private usersService: UsersService,
+    private formBuilder: FormBuilder,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.actualProfile = JSON.parse(localStorage['userProfile'])
     this.updateProfileForm = this.formBuilder.group({
-      name: [""],
+      name: [this.actualProfile.name],
       email: [this.actualProfile.email, Validators.email],
     })
   }
@@ -36,7 +39,10 @@ export class MyProfileComponent implements OnInit {
     updatedProfile.append("name", this.updateProfileForm.value.name)
     updatedProfile.append("email", this.updateProfileForm.value.email)
     // console.table(updatedProfile);
-    return this.usersService.updateUser(updatedProfile).subscribe()
+    return this.usersService.updateUser(updatedProfile).subscribe(
+      console.log      
+      // this.router.navigate([""])
+      )
 
   }
 }

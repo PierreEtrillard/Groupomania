@@ -52,10 +52,18 @@ export class UsersService {
       }))
   }
   updateUser(userUpdated: FormData) {
-    console.log(`Mise à jour de l'utilisateur:  ${JSON.stringify(userUpdated)} envoyé à ${apiUrl}/auth/update`);
     return this.http.post<User>(`${apiUrl}/auth/update`, userUpdated,this.httpOptions).pipe(
       tap(
-        (res) => console.log(res)
+        (res) => {
+          this.catchResponse = res
+          const updateProfile = this.catchResponse.userProfile
+          const actualProfile = JSON.parse(localStorage['userProfile'])
+          actualProfile.name = updateProfile.name 
+          actualProfile.email =updateProfile.email
+          actualProfile.photo =updateProfile.photo
+          localStorage['userProfile']=JSON.stringify(actualProfile)
+          this.router.navigate([''])
+        }
       ),
       catchError((err) => {
         console.error(err)
