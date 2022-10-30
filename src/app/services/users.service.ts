@@ -28,7 +28,6 @@ export class UsersService {
       tap(() => {
         document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });
         localStorage.clear()
-        this.router.navigate(['login']);
       }
       ),
       catchError((err) => {

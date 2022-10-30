@@ -7,11 +7,8 @@
     <fa-icon [icon]="faComment" class="fa-2x clicked"></fa-icon>
     <!-- <p class="icon-description">créer un post</p> -->
   </a>
-  <a (click)="setPost()" class="icon-wrapper">
-    <fa-icon
-      [icon]="faEraser"
-      [ngClass]="correctingMod ? 'fa-2x clicked actived' : 'fa-2x clicked'"
-    ></fa-icon>
+  <a routerLink="/contact" class="icon-wrapper">
+    <fa-icon [icon]="faAddressBook" class="fa-2x clicked"></fa-icon>
     <!-- <p class="icon-description">corriger/suprimer un post</p> -->
   </a>
   <a routerLink="/favories" class="icon-wrapper">

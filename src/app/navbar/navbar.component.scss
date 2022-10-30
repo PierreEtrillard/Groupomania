@@ -1,5 +1,6 @@
 @import "../../scss/variables";
 @import "../../scss/keyframes";
+@import "../../scss/utils";
 nav {
   position: fixed;
   align-items: flex-start;
@@ -16,49 +17,24 @@ nav {
   position: fixed;
   bottom: 0;
   width: 100%;
+  margin: 0;
 }
 .icon-wrapper {
   //version desktop:
   // transform: translateX(-30px);
   //version mobile:
   transform: translateY(-30px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  border: double $tertiaryColor 4px;
+  @include centralizer;
+  @include medal-white;
   width: 70px;
   height: 70px;
-  background-color: white;
-  color: $tertiaryColor;
   transition: 0.5s;
   position: relative;
   &:hover {
-    transform: rotateY(-180deg) translateY(-50px);;
-    background-color: $tertiaryColor;
-    color: white;
-    border: double white 4px;
+    transform: rotateY(-180deg) translateY(-50px);
+    @include medal-dark;
   }
   &::after {
     position: absolute;
   }
-  .actived{
-    color: $primaryColor;
-  }
 }
-// .icon-description {
-//   position: absolute;
-//   right: 0;
-//   display: flex;
-//   align-items: center;
-//   transition: 0.5s;
-//   background-color: $tertiaryColor;
-//   color: white;
-//   white-space: nowrap;
-//   height: 70px;
-//   z-index: -1;
-//   transform: scaleX(0);
-//   &:hover {
-//     transform: scaleX(1);
-//   }
-// }

@@ -18,6 +18,7 @@ export class SigninComponent implements OnInit {
   constructor(private usersService: UsersService, private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit() {
+    this.usersService.logout().subscribe()
     // le model du formulaire est créé ici:
     this.signinForm = this.formBuilder.group({
       email: ["", [Validators.required, Validators.email]],

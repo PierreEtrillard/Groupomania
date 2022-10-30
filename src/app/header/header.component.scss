@@ -10,6 +10,7 @@ header {
   height: 10%;
   width: 100%;
   @include linear-background;
+  z-index: 10;
   fa-icon {
     margin-right: 30px;
     color: white;
@@ -22,6 +23,7 @@ header {
     transition: 0.4s;
     object-fit: contain;
     width: 35%;
+    max-height: 50%;
     &:hover {
       filter: grayscale(100deg);
     }

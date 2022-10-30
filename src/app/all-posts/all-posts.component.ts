@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Post } from '../models/post.model';
 import { PostsService } from '../services/posts.service';
-import { faEraser, faCommenting, faHeart, faMagnifyingGlassPlus } from "@fortawesome/free-solid-svg-icons";
+import { faEraser, faCommenting, faHeart, faMagnifyingGlassPlus, faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { User } from '../models/user.model';
 import { UsersService } from '../services/users.service';
 import { Router } from '@angular/router';
@@ -20,6 +20,9 @@ export class AllPostsComponent implements OnInit {
   faEraser = faEraser
   faHeart = faHeart
   faMagnifyingGlassPlus = faMagnifyingGlassPlus
+  faPen = faPen
+  faTrash = faTrash
+  catchResponse: any
   message: string
   correctingMod: boolean
   constructor(
@@ -33,6 +36,7 @@ export class AllPostsComponent implements OnInit {
       localStorage['allPosts'] = JSON.stringify(this.posts)
     })
     this.currentUser = JSON.parse(localStorage['userProfile'])
+    this.correctingMod = false
   }
 
   isNewPost(creationDate: number | undefined): boolean {
@@ -80,21 +84,42 @@ export class AllPostsComponent implements OnInit {
       this.router.navigate([`post/${postId}`])
     }
   }
+  correctingModSwitch() {
+    this.correctingMod ? this.correctingMod = false : this.correctingMod = true
+  }
+
   correctable(postAuthor: string) {
-    this.correctingMod = localStorage['correctingMod']
     if (postAuthor === this.currentUser.name && this.correctingMod) {
       return true
     } else {
       return false
     }
   }
-  erraseOrCorrect(postId: string, postAuthor: string) {
-    if (this.correctingMod && this.currentUser.role !== 'normal') {
-      this.postsServices.deleteOne(postId).subscribe(console.log
-      )
-    }
-    if (postAuthor === this.currentUser.name) {
-      this.router.navigate([`corrector/${postId}`])
+  erasable(postAuthor: string) {
+    if (
+      (postAuthor === this.currentUser.name || this.currentUser.role !== 'normal') && this.correctingMod) {
+      return true
+    } else {
+      return false
     }
   }
+  erase(postId: string, postAuthor: string) {
+    this.postsServices.deleteOne(postId).subscribe({
+      next: (response) => {
+        this.catchResponse = response;
+        this.message = this.catchResponse.message
+        setTimeout(() => {
+          this.message = "";
+          this.posts = this.posts.filter((post) => post.id !== postId)
+        }, 3000)
+        //traitement dans le localstorage pour eviter une requète
+        localStorage['allPosts'] = JSON.stringify(this.posts)
+      },
+      error: (error) => console.error(error),
+    })
+  }
+  correctIt(postId: string) {
+    this.router.navigate([`corrector/${postId}`])
+  }
+
 }

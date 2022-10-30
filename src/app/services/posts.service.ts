@@ -10,6 +10,7 @@ const apiUrl = environment.apiUrl;
   providedIn: 'root'
 })
 export class PostsService {
+  correctingMod: boolean
   constructor(
     private http: HttpClient, private router: Router
   ) { }
@@ -25,22 +26,22 @@ export class PostsService {
     })
     )
   }
-  getOnePost(postId:string): Observable<any> {
+  getOnePost(postId: string): Observable<any> {
     return this.http.get(`${apiUrl}/posts/${postId}`, this.httpOptions)
   }
-  newPost(post:FormData) {
+  newPost(post: FormData) {
     return this.http.post(`${apiUrl}/posts`, post, this.httpOptions)
   }
-  likePost(postId: string,likeIt:boolean) {     
-    return this.http.post(`${apiUrl}/posts/${postId}/like`, {likeIt:likeIt}, this.httpOptions).pipe(catchError((err) => {
+  likePost(postId: string, likeIt: boolean) {
+    return this.http.post(`${apiUrl}/posts/${postId}/like`, { likeIt: likeIt }, this.httpOptions).pipe(catchError((err) => {
       console.log(err);
       return of(err)
     }))
   }
-  deleteOne(postId: string){
+  deleteOne(postId: string) {
     return this.http.delete(`${apiUrl}/posts/${postId}/delete`, this.httpOptions)
   }
-  updateOne(postId: string){
+  updateOne(postId: string) {
     return this.http.put(`${apiUrl}/posts/${postId}/update`, this.httpOptions)
   }
 }

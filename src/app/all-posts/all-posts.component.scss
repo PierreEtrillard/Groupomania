@@ -1,25 +1,25 @@
 @import "../../scss/variables";
 @import "../../scss/keyframes";
+@import "../../scss/utils";
 main {
   display: flex;
   // version mobile
   flex-direction: column;
   padding-top: 17%;
 }
-.message{
-position: fixed;
-top:12%;
-width: 100%;
-color:$tertiaryColor;
-font-weight: bold;
-text-align: center;
-background-color: $secondaryColor;
-animation: box-deployment 3s forwards;
-z-index: -1;
+.message {
+  position: fixed;
+  top: 12%;
+  width: 100%;
+  color: $tertiaryColor;
+  font-weight: bold;
+  text-align: center;
+  background-color: $secondaryColor;
+  animation: box-deployment 3s forwards;
+  z-index: 5;
 }
 
 section.post-area {
-  padding-top: 17%;
   width: 100%;
   display: flex;
   flex-direction: column-reverse;
@@ -39,7 +39,6 @@ section.post-area {
       margin-bottom: 20px;
     }
   }
-  
 }
 .new-post-notice {
   position: absolute;
@@ -52,6 +51,9 @@ section.post-area {
 }
 .new-post-card {
   box-shadow: purple 0px 0px 15px;
+}
+.correctable {
+  box-shadow: $primaryColor 0px 0px 15px;
 }
 .post-title {
   display: flex;
@@ -89,7 +91,6 @@ section.post-area {
   cursor: pointer;
 
   .obvious-heart {
-    position: absolute;
     left: -43px;
     top: -43px;
     position: relative;
@@ -121,15 +122,36 @@ section.post-area {
     opacity: 0;
   }
 }
-.detail {
-  position: absolute;
-  right:25px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-bottom: -20px;
-border-radius: 20px;
-width: 30px;
-height: 30px;
-background-color: $tertiaryColor;
-color: white;}
+.small-icon {
+  @include centralizer;
+  @include small-medal;
+  &-right {
+    position: absolute;
+    right: 25px;
+    bottom: -20px;
+    
+  }
+  &-left {
+    left: -43px;
+    top: -7px;
+    position: relative;
+  }
+  &-correct-it {
+    color: $primaryColor;
+  }
+}
+
+.correctingModBtn {
+  position: fixed;
+  right: 10px;
+  bottom: 60px;
+  width: 50px;
+  height: 50px;
+  transition: 0.8s;
+  @include medal-dark;
+  @include centralizer;
+}
+.correctingModEnabled {
+  transform: rotateY(-1turn);
+  @include medal-red;
+}

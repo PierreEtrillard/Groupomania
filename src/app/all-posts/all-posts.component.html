@@ -1,15 +1,19 @@
 <app-header></app-header>
 <main>
-  <div *ngIf="message !== ''" class="message">{{message}}</div>
+  <div *ngIf="message !== ''" class="message">{{ message }}</div>
   <section class="post-area">
     <div
-    *ngFor="let post of posts"
-    class="card"
-    style="width: 18rem"
-    [ngClass]="isNewPost(post.createdAt) ? 'new-post-card' : 'card-body'"
-    [ngClass]="correctable(post.author) ? 'new-post-card' : 'card-body'"
-    (click)="erraseOrCorrect(post.id,post.author)"
-        >
+      *ngFor="let post of posts"
+      class="card"
+      style="width: 18rem"
+      [ngClass]="
+        erasable(post.author)
+          ? 'correctable'
+          : isNewPost(post.createdAt)
+          ? 'new-post-card'
+          : 'card-body'
+      "
+    >
       <div class="post-content">
         <div *ngIf="isNewPost(post.createdAt)" class="new-post-notice">
           nouveau !
@@ -22,9 +26,7 @@
           />
           <h5 class="card-title">{{ post.title | titlecase }}</h5>
         </div>
-        <h6 class="card-subtitle mb-2 text-muted">
-          de {{ post.author }}
-        </h6>
+        <h6 class="card-subtitle mb-2 text-muted">de {{ post.author }}</h6>
         <h6 class="card-subtitle mb-2 text-muted">
           le {{ post.createdAt | date: "dd MMMM. à HH:mm" }}
         </h6>
@@ -38,19 +40,51 @@
           {{ post.textContent }}
         </p>
       </div>
-
-      <div class="like-wrapper" (click)="likeAction(post.id, post.author)">
+      <div class="like-wrapper">
+        <div
+          class="small-icon small-icon-left small-icon-correct-it"
+          *ngIf="correctable(post.author)"
+          (click)="correctIt(post.id)"
+        >
+          <fa-icon [icon]="faPen"></fa-icon>
+        </div>
         <div [ngClass]="isLiked(post.id) ? 'liked-state' : 'unliked-state'">
           J'<fa-icon [icon]="faHeart" class="liked-heart"></fa-icon>ce post !
         </div>
-        <div class="obvious-heart">
+        <div
+          (click)="likeAction(post.id, post.author)"
+          *ngIf="!correctable(post.author)"
+          class="obvious-heart"
+        >
           <fa-icon [icon]="faHeart"></fa-icon>
           <div class="score">{{ post.likers.length }}</div>
         </div>
       </div>
-      <div class="detail" (click)="showDetails(post.id,post.author)">
-        <fa-icon [icon]="faMagnifyingGlassPlus"></fa-icon></div>
+      <div
+        *ngIf="!erasable(post.author)"
+        class="small-icon small-icon-right "
+        (click)="showDetails(post.id, post.author)"
+      >
+        <fa-icon [icon]="faMagnifyingGlassPlus"></fa-icon>
+      </div>
+      <div
+        *ngIf="erasable(post.author)"
+        class="small-icon small-icon-right small-icon-correct-it"
+        (click)="erase(post.id, post.author)"
+      >
+        <fa-icon [icon]="faTrash"></fa-icon>
+      </div>
     </div>
   </section>
+  <div
+    [ngClass]="
+      correctingMod
+        ? 'correctingModBtn correctingModEnabled'
+        : 'correctingModBtn '
+    "
+    (click)="correctingModSwitch()"
+  >
+    <fa-icon [icon]="faEraser"></fa-icon>
+  </div>
   <app-navbar></app-navbar>
 </main>
