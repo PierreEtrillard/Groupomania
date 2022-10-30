@@ -1,14 +1,24 @@
 <app-header></app-header>
-<main>
-  <!-- <h1>{{ post.title }}</h1>
+<form novalidate (ngSubmit)="udpatePost()" [formGroup]="postUpdateForm">
+  <h1>{{ post.title }}</h1>
+  <label for="title">Je change de titre:</label>
+  <input type="text" id="title" formControlName="title"/>
   <h2>
-    Le {{ post.createdAt | date: "dd MMMM. à HH:mm" }} {{ post.author }} à
-    publié ceci:
+    Le {{ post.createdAt | date: "dd MMMM. à HH:mm" }} vous avez publié ceci:
   </h2>
   <img
     *ngIf="post.imageUrl !== ''"
     [src]="post.imageUrl"
     alt="{{ post.textContent }}"
   />
-  <p *ngIf="post.textContent !== ''">{{ post.textContent }}</p> -->
-</main>
+  <label for="photo">Je change la photo de ce post</label>
+  <input type="file" id="photo" />
+  <p *ngIf="post.textContent !== ''">{{ post.textContent }}</p>
+  <label for="textContent">Je modifie mon commentaire</label>
+  <textarea name="" id="textContent" cols="30" rows="10" formControlName="textContent"></textarea>
+  <button type="submit">
+    <fa-icon [icon]="faFloppyDisk" class="fa-2x clicked "></fa-icon>
+  </button>
+  
+  <div *ngIf="postUpdateForm.valid">formulaire prêt</div>
+</form>

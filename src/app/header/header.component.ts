@@ -16,7 +16,4 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.currentUser = JSON.parse(localStorage['userProfile'])
   }
-disconnection(){
-  return this.usersService.logout().subscribe()
-}
 }
