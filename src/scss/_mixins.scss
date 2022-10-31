@@ -30,3 +30,13 @@
     border: solid 2px white;
     cursor: pointer;
 }
+@mixin linear-background-invalid {
+  background-image: linear-gradient(
+    120deg,
+    black 0%,
+    $tertiaryColor  50%,
+    black 100%
+  );
+    border: solid 2px $tertiaryColor;
+    cursor: not-allowed;
+}

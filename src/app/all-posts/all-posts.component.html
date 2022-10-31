@@ -60,13 +60,13 @@
           <div class="score">{{ post.likers.length }}</div>
         </div>
       </div>
-      <div
+      <!-- (click)="showDetails(post.id)" -->
+      <a routerLink="post/{{post.id}}"
         *ngIf="!erasable(post.author)"
         class="small-icon small-icon-right "
-        (click)="showDetails(post.id, post.author)"
       >
         <fa-icon [icon]="faMagnifyingGlassPlus"></fa-icon>
-      </div>
+    </a>
       <div
         *ngIf="erasable(post.author)"
         class="small-icon small-icon-right small-icon-correct-it"

@@ -12,7 +12,8 @@
 }
 form.login {
   margin-bottom: 400px;
-  width: 50%;
+  width: 70%;
+  max-width:400px;
   min-height: 800px;
   display: flex;
   justify-content: space-evenly;
@@ -28,6 +29,7 @@ form.login {
     border-left: none;
     border-right: none;
     background-color: $tertiaryColor;
+    color: white;
   }
   a {
     color: $secondaryColor;

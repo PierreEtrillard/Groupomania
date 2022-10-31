@@ -41,6 +41,7 @@ export class SigninComponent implements OnInit {
       }),
       catchError(error => {
         this.errorMsg = "Désolé vous ne pouvez créer qu'un compte par adresse mail";
+        setTimeout(()=>{this.errorMsg = ""},3000)
         console.error(error);        
         return EMPTY;
       })

@@ -82,12 +82,16 @@
         <a class="link" routerLink="/cgu">conditions d'utilisation</a></label
       >
     </div>
-    <button *ngIf="signinForm.valid" type="submit" class="btn-gpm">
-      Je m'inscris
-    </button>
-    <h3 class="error" *ngIf="errorMsg !=''">{{errorMsg}}</h3>
-    <a class="connection-page" routerLink="/login"
-      >retour à la page de connection</a
-    >
+    <h3 class="error" *ngIf="errorMsg != ''">{{ errorMsg }}</h3>
+    <div class="wrapper-bottom">
+      <div *ngIf="signinForm.invalid" class="btn-gpm-invalid">Je m'identifie</div>
+      <button *ngIf="signinForm.valid" type="submit" class="btn-gpm">
+        Je m'inscris
+      </button>
+
+      <a class="connection-page" routerLink="/login"
+        >retour à la page de connexion</a
+      >
+    </div>
   </form>
 </div>

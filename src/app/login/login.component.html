@@ -31,7 +31,7 @@
         *ngIf="loginForm.controls['email'].errors"
         id="emailAssistant"
         class="invalid-feedback mb-3"
-        ><span>Ce champ dois contenir au moins 2 caractères</span></small
+        ><span>email invalide</span></small
       >
     </div>
     <div class="form-group">
@@ -59,6 +59,9 @@
         class="invalid-feedback mb-3"
         ><span>Mot de passe trop cours</span></small
       >
+    </div>
+    <div *ngIf="loginForm.invalid" class="btn-gpm-invalid">
+      Je m'identifie
     </div>
     <button *ngIf="loginForm.valid" class="btn-gpm" type="submit">
       Je me connecte

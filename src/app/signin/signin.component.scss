@@ -1,5 +1,7 @@
 @import "../../scss/variables";
 @import "../../scss/mixins";
+@import "../../scss/utils";
+@import "../../scss/keyframes";
 .container {
   display: flex;
   flex-direction: column;
@@ -21,14 +23,27 @@ form {
   .form-check-input {
     margin-top: 25px;
   }
+  .error{
+    @include centralizer;
+    animation :box-deployment 3s both;
+    text-align: center
+  }
+}
+.wrapper-bottom{
+  @include centralizer;
+  width: 100%;
   a.connection-page {
     @include gradient-text;
-    position: absolute;
+    @include centralizer;
+    text-align: center;
+    color:$tertiaryColor;
     font-weight: bold;
-    right:15px;
-    bottom:25px;
+    font-size: small;
     box-shadow: $tertiaryColor 0px 0px 5px;
-    border-radius: 20px;
+    border-radius: 15px;
     padding: 10px;
+    min-width: 140px;
+    max-width: 140px;
+    height: 64px;
   }
 }

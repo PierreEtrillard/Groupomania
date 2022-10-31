@@ -77,12 +77,8 @@ export class AllPostsComponent implements OnInit {
     // mise à jour de la BDD faite par l'API
     this.postsServices.likePost(postId, this.isLiked(postId)).subscribe(console.log)
   }
-  showDetails(postId: string, postAuthor: string) {
-    if (postAuthor === this.currentUser.name) {
-      this.router.navigate([`corrector/${postId}`])
-    } else {
+  showDetails(postId: string) {
       this.router.navigate([`post/${postId}`])
-    }
   }
   correctingModSwitch() {
     this.correctingMod ? this.correctingMod = false : this.correctingMod = true

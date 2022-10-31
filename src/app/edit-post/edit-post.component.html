@@ -18,6 +18,7 @@
         class="card-img"
         (click)="picsRetriver.click()"
       />
+      <label for="picsInput">Ajoutez une image</label>
       <input
         id="picsInput"
         #picsRetriver
@@ -31,10 +32,11 @@
         type="text-area"
         formControlName="textContent"
         class="form-control card-subtitle mb-2"
-      ></textarea>
+      >
+      <button *ngIf="newPostForm.valid" type="submit">
+        <fa-icon [icon]="faPaperPlane" class="fa-2x clicked"></fa-icon>
+      </button>
+      </textarea>
     </div>
-    <button *ngIf="newPostForm.valid" type="submit">
-      <fa-icon [icon]="faPaperPlane" class="fa-2x clicked"></fa-icon>
-    </button>
   </form>
 </main>

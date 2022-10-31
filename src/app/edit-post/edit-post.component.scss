@@ -1,4 +1,4 @@
-@import "../../scss/variables";
+@import "../../scss/styles";
 main {
   padding-top: 15%;
   display: flex;
@@ -17,7 +17,7 @@ form {
   color: white;
   border: double 4px white;
   position: relative;
-}
+
 #title{
   background-color: $secondaryColor;
   color: $tertiaryColor;
@@ -41,13 +41,13 @@ fa-icon {
   position: absolute;
   bottom: -35px;
   right: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include medal-white;
+  @include centralizer;
   border-radius: 50%;
   border: double $tertiaryColor 4px;
   width: 70px;
   height: 70px;
   background-color: white;
   color: $tertiaryColor;
+}
 }
