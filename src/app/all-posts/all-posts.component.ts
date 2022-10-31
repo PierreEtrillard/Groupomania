@@ -24,6 +24,8 @@ export class AllPostsComponent implements OnInit {
   catchResponse: any
   message: string
   correctingMod: boolean
+  loading:boolean=false
+  loadMessage:string
   constructor(
     private postsServices: PostsService,
     private router: Router
@@ -99,12 +101,14 @@ export class AllPostsComponent implements OnInit {
     }
   }
   erase(postId: string, postAuthor: string) {
+    this.loading=true
     this.postsServices.deleteOne(postId).subscribe({
       next: (response) => {
         this.catchResponse = response;
         this.message = this.catchResponse.message
         setTimeout(() => {
           this.message = "";
+          this.loading=false
           this.posts = this.posts.filter((post) => post.id !== postId)
         }, 3000)
         //traitement dans le localstorage pour eviter une requète

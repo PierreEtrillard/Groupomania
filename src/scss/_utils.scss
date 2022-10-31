@@ -32,3 +32,23 @@
   background-color: $tertiaryColor;
   color: white;
 }
+.loader{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: $tertiaryColor;
+  z-index: 100;
+  .center-item{
+    position: absolute;
+    top: 50%;
+    left: 12%;
+    img{
+      width:80%;
+    }
+    .load-message{
+      color:$primaryColor;
+      font-weight: bold;
+      text-align: center;
+    }
+  }
+}
