@@ -1,3 +1,22 @@
+@import "../../scss/styles";
 form{
     padding-top: 17%;
+    label{color:$tertiaryColor;
+    font-weight: bolder;}
+    input{
+        background-color: $secondaryColor;
+    }
+    textarea{
+        background-color: $secondaryColor;
+        position: relative;
+    }
+    button {
+        position: absolute;
+        bottom: -40px;
+        right: 10px;
+        @include medal-dark;
+        @include centralizer;
+        width: 70px;
+        height: 70px;
+      }
 }

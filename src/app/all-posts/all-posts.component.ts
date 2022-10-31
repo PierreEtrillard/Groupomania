@@ -3,7 +3,6 @@ import { Post } from '../models/post.model';
 import { PostsService } from '../services/posts.service';
 import { faEraser, faCommenting, faHeart, faMagnifyingGlassPlus, faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { User } from '../models/user.model';
-import { UsersService } from '../services/users.service';
 import { Router } from '@angular/router';
 
 @Component({

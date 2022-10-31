@@ -16,38 +16,47 @@ form {
   background-color: $tertiaryColor;
   color: white;
   border: double 4px white;
-  position: relative;
+  margin-bottom: 120px;
+  label{
+    color: $secondaryColor;
+    text-align: center;
+    font-size: large;
+  }
 
-#title{
-  background-color: $secondaryColor;
-  color: $tertiaryColor;
-  text-align: center;
-  transform: translateY(-20px);
-  border: double 4px  $tertiaryColor;
-  border-radius: 20px;}
-#picsInput {
-  display: none;
+  #title {
+    background-color: $secondaryColor;
+    color: $tertiaryColor;
+    text-align: center;
+    transform: translateY(-20px);
+    border: double 4px $tertiaryColor;
+    border-radius: 20px;
+  }
+  #picsInput {
+    border: solid 3px $secondaryColor;
+    width: 100%;
+  }
+
 }
-textarea{
-  height: 30%;
-  background-color: $secondaryColor;
-  color: $tertiaryColor;
-  text-align: center;
-  transform: translateY(40px);
-  border: double 4px  $tertiaryColor;
-  border-radius: 20px;
-}
-fa-icon {
-  position: absolute;
-  bottom: -35px;
-  right: 20px;
-  @include medal-white;
-  @include centralizer;
-  border-radius: 50%;
-  border: double $tertiaryColor 4px;
-  width: 70px;
-  height: 70px;
-  background-color: white;
-  color: $tertiaryColor;
-}
+#bottom-form{
+  position: relative;
+    textarea {
+    height: 30%;
+    background-color: $secondaryColor;
+    color: $tertiaryColor;
+    text-align: center;
+    transform: translateY(50px);
+    border: double 4px $tertiaryColor;
+    border-radius: 20px;
+    
+  }
+
+  fa-icon {
+    position: absolute;
+    bottom: -60px;
+    right: -51px;
+    @include medal-white;
+    @include centralizer;
+    width: 70px;
+    height: 70px;
+  }
 }

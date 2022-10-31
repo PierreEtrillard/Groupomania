@@ -20,9 +20,6 @@ nav {
   margin: 0;
 }
 .icon-wrapper {
-  //version desktop:
-  // transform: translateX(-30px);
-  //version mobile:
   transform: translateY(-30px);
   @include centralizer;
   @include medal-white;

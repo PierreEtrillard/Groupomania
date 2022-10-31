@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AllPostsComponent } from './all-posts/all-posts.component';
+import { ContactsComponent } from './contacts/contacts.component';
 import { EditPostComponent } from './edit-post/edit-post.component';
 import { FavoriesComponent } from './favories/favories.component';
 import { LoginComponent } from './login/login.component';
@@ -17,6 +18,7 @@ const routes: Routes = [
 {path:'login', component: LoginComponent},
 {path:'myprofile', component: MyProfileComponent},
 {path:'favories', component: FavoriesComponent},
+{path:'contacts', component: ContactsComponent},
 {path:'corrector/:id', component: PostCorrectorComponent},
 {path:'post/:id', component: PostComponent},
 {path:'**', component: WrongWayComponent},

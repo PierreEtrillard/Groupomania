@@ -1,1 +1,34 @@
-<p>favories works!</p>
+<app-header></app-header>
+<main>
+    <h1>Mes Favories</h1>
+  <section class="post-area">
+    <div *ngFor="let post of myFavories" style="width: 18rem" class="card">
+      <div class="post-content">
+        <div class="post-title">
+          <img
+            [src]="post.authorPhoto"
+            alt="photo de {{ post.author }}"
+            class="photo-profile"
+          />
+          <h5 class="card-title">{{ post.title | titlecase }}</h5>
+        </div>
+        <h6 class="card-subtitle mb-2 text-muted">de {{ post.author }}</h6>
+        <h6 class="card-subtitle mb-2 text-muted">
+          le {{ post.createdAt | date: "dd MMMM. à HH:mm" }}
+        </h6>
+        <img
+          *ngIf="post.imageUrl !== ''"
+          [src]="post.imageUrl"
+          alt="{{ post.textContent }}"
+          class="card-img"
+        />
+        <p class="card-text">
+          {{ post.textContent }}
+        </p>
+    </div>
+      <a (click)="goToDetails(post.id)" >
+        <fa-icon [icon]="faMagnifyingGlassPlus"></fa-icon>
+      </a>
+    </div>
+  </section>
+</main>

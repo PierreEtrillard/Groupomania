@@ -1,8 +1,7 @@
 <app-header></app-header>
 <main class="container">
   <h1>Exprimez-vous !</h1>
-  <form novalidate (ngSubmit)="sendNewPost()" [formGroup]="newPostForm">
-    <div class="card-body">
+  <form  novalidate (ngSubmit)="sendNewPost()" [formGroup]="newPostForm">
       <div class="post-title">
         <input
           id="title"
@@ -25,18 +24,17 @@
         type="file"
         (change)="selectPic($event)"
       />
-      <textarea
-        id="comment"
-        placeholder="ecrivez ici"
-        aria-describedby="image du post"
-        type="text-area"
-        formControlName="textContent"
-        class="form-control card-subtitle mb-2"
-      >
-      <button *ngIf="newPostForm.valid" type="submit">
-        <fa-icon [icon]="faPaperPlane" class="fa-2x clicked"></fa-icon>
-      </button>
-      </textarea>
-    </div>
+     <div id="bottom-form"> <textarea
+      id="comment"
+      placeholder="ecrivez ici"
+      aria-describedby="image du post"
+      type="text-area"
+      formControlName="textContent"
+      class="form-control card-subtitle mb-2"
+    >
+    </textarea>
+    <button *ngIf="newPostForm.valid" type="submit">
+      <fa-icon [icon]="faPaperPlane" class="fa-2x clicked"></fa-icon>
+    </button></div>
   </form>
 </main>

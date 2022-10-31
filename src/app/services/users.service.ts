@@ -18,7 +18,7 @@ export class UsersService {
   constructor(private http: HttpClient, private router: Router) { }
 
   newUser(user: User) {
-    return this.http.post<{ message: string }>(`${apiUrl}/auth/signin`, user)
+    return this.http.post<{ message: string }>(`${apiUrl}/auth/signin`, user, this.httpOptions)
   }
   login(logData: any): Observable<any> {
     return this.http.post<any>(`${apiUrl}/auth/login`, logData, this.httpOptions)
@@ -36,13 +36,13 @@ export class UsersService {
       }))
   }
 
-  getUserProfile(): Observable<any> {
-    return this.http.get<User>(`${apiUrl}/auth/profile/one`, this.httpOptions).pipe(
-      catchError((err) => {
-        console.error(err)
-        return of()
-      }))
-  }
+  // getUserProfile(): Observable<any> {
+  //   return this.http.get<User>(`${apiUrl}/auth/profile/one`, this.httpOptions).pipe(
+  //     catchError((err) => {
+  //       console.error(err)
+  //       return of()
+  //     }))
+  // }
   getAllProfiles(): Observable<any> {
     return this.http.get<User>(`${apiUrl}/auth/profile/all`, this.httpOptions).pipe(
       catchError((err) => {

@@ -30,6 +30,7 @@ export class PostCorrectorComponent implements OnInit {
       imageUrl: [this.post.imageUrl],
       textContent: [this.post.textContent]
     })
+    
   }
   picSelected(event: any) {
     this.image = event.target.files[0]
@@ -38,6 +39,8 @@ export class PostCorrectorComponent implements OnInit {
     const updatedPost = new FormData()
     if (this.image) {
       updatedPost.append("image", this.image, this.image?.name)
+      console.log(this.image);
+      
     }
     updatedPost.append("title", this.postUpdateForm.value.title)
     updatedPost.append("textContent", this.postUpdateForm.value.textContent)

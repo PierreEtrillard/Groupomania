@@ -1,5 +1,4 @@
-@import "../../scss/variables";
-@import "../../scss/mixins";
+@import "../../scss/styles";
 
 header {
   position: fixed;
@@ -40,13 +39,8 @@ a.check-user {
   justify-content: flex-start;
   align-items: center;
   #photo-user{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    border: double $primaryColor 5px;
-    background-color: white;
-
+    @include centralizer;
+    @include medal-red;
     width: 50px;
     height: 50px;
     object-fit: fill;

@@ -1,6 +1,4 @@
-@import "../../scss/variables";
-@import "../../scss/keyframes";
-@import "../../scss/utils";
+@import "../../scss/styles";
 main {
   display: flex;
   // version mobile
@@ -41,9 +39,10 @@ section.post-area {
   }
 }
 .new-post-notice {
+  z-index: 1;
   position: absolute;
   top: 0;
-  right: 5px;
+  right: -5px;
   color: purple;
   font-weight: bold;
   text-shadow: $tertiaryColor 5px 5px 10px;

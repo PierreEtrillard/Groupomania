@@ -21,6 +21,7 @@ import { MyProfileComponent } from './my-profile/my-profile.component';
 import { PostCorrectorComponent } from './post-corrector/post-corrector.component';
 import { FavoriesComponent } from './favories/favories.component';
 import { PostComponent } from './post/post.component';
+import { ContactsComponent } from './contacts/contacts.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { PostComponent } from './post/post.component';
     MyProfileComponent,
     PostCorrectorComponent,
     FavoriesComponent,
-    PostComponent
+    PostComponent,
+    ContactsComponent
   ],
   imports: [
     BrowserModule,

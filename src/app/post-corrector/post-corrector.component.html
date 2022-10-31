@@ -1,8 +1,18 @@
 <app-header></app-header>
-<form novalidate (ngSubmit)="udpatePost()" [formGroup]="postUpdateForm">
-  <h1>{{ post.title }}</h1>
+<form
+  novalidate
+  (ngSubmit)="udpatePost()"
+  [formGroup]="postUpdateForm"
+  class="card"
+>
+  <h1>modification de {{ post.title }}</h1>
   <label for="title">Je change de titre:</label>
-  <input type="text" id="title" formControlName="title"/>
+  <input
+    type="text"
+    id="title"
+    formControlName="title"
+    placeholder="actuellement: {{ post.title }}"
+  />
   <h2>
     Le {{ post.createdAt | date: "dd MMMM. à HH:mm" }} vous avez publié ceci:
   </h2>
@@ -12,13 +22,24 @@
     alt="{{ post.textContent }}"
   />
   <label for="photo">Je change la photo de ce post</label>
-  <input type="file" id="photo" />
+  <input
+    type="file"
+    id="photo"
+    (change)="picSelected($event)"
+    accept="image/*"
+    aria-describedby="ma photo de profile"
+  />
   <p *ngIf="post.textContent !== ''">{{ post.textContent }}</p>
   <label for="textContent">Je modifie mon commentaire</label>
-  <textarea name="" id="textContent" cols="30" rows="10" formControlName="textContent"></textarea>
+  <textarea
+    name=""
+    id="textContent"
+    cols="30"
+    rows="10"
+    formControlName="textContent"
+    placeholder="{{ post.textContent }}"
+  ></textarea>
   <button type="submit">
-    <fa-icon [icon]="faFloppyDisk" class="fa-2x clicked "></fa-icon>
+    <fa-icon [icon]="faFloppyDisk" class="fa-2x clicked"></fa-icon>
   </button>
-  
-  <div *ngIf="postUpdateForm.valid">formulaire prêt</div>
 </form>

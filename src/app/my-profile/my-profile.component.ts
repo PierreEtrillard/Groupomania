@@ -13,7 +13,6 @@ import { UsersService } from '../services/users.service';
 export class MyProfileComponent implements OnInit {
   faFloppyDisk = faFloppyDisk
   actualProfile: User
-  photoRetriver: boolean
   photo: File | null = null
   updateProfileForm: FormGroup;
   constructor(
@@ -24,8 +23,7 @@ export class MyProfileComponent implements OnInit {
   ngOnInit(): void {
     this.actualProfile = JSON.parse(localStorage['userProfile'])
     this.updateProfileForm = this.formBuilder.group({
-      name: [this.actualProfile.name],
-      email: [this.actualProfile.email, Validators.email],
+      name: [this.actualProfile.name]
     })
   }
   photoSelected(event: any) {
@@ -37,11 +35,10 @@ export class MyProfileComponent implements OnInit {
       updatedProfile.append("image", this.photo, this.photo?.name)
     }
     updatedProfile.append("name", this.updateProfileForm.value.name)
-    updatedProfile.append("email", this.updateProfileForm.value.email)
-    // console.table(updatedProfile);
+    console.log("updateOk"+updatedProfile);
+    
     return this.usersService.updateUser(updatedProfile).subscribe(
       console.log      
-      // this.router.navigate([""])
       )
 
   }

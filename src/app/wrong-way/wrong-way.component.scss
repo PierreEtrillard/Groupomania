@@ -1,11 +1,13 @@
 @import "../../scss/variables";
 @import "../../scss/keyframes";
 
-.main-wrong-way {
+main {
+  padding-top: 17%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
+  width: 100%;
 }
 .obvious-icon {
   margin-top: 10%;
@@ -14,7 +16,6 @@
   background: transparent;
   animation: turner 2s;
 }
-
 .shaddow{
     font-size: 200px;
     top: 50%;
@@ -23,3 +24,6 @@
     z-index: -1;
     transform: rotate(60deg) skewY(320deg) translate(-180px, -360px);
   }
+h1{
+  transform: translateY(-270px);
+}
