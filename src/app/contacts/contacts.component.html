@@ -1,0 +1,16 @@
+<app-header></app-header>
+
+<h1>utilisateurs</h1>
+<div class="contact-list">
+  <div class="card" *ngFor="let contact of users">
+    <img
+      class="card-img-top"
+      src="{{ contact.photo }}"
+      alt="photo de profile de {{ contact.name }}"
+    />
+    <div class="card-body">
+      <h5 class="card-title">{{ contact.name }}</h5>
+      <h5 class="card-title">{{ contact.email }}</h5>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+.btn-gpm {
+  animation: box-deployment 0.8s;
+  @include linear-background;
+  margin: 15px;
+  border-radius: 15px;
+  padding: 20px;
+  color: white;
+  transition: all 0.2s;
+  max-width: fit-content;
+  min-width: fit-content;
+
+  &:hover {
+    @include linear-background-hovered;
+  }
+}
+.btn-gpm-invalid {
+  @include linear-background-invalid;
+  margin: 15px;
+  border-radius: 15px;
+  padding: 20px;
+  transition: all 0.2s;
+  color: $primaryColor;
+  max-width: fit-content;
+  min-width: fit-content;
+}
