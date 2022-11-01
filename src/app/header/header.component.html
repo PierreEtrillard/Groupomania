@@ -9,7 +9,7 @@
   <a routerLink="/login">
     <fa-icon [icon]="faUpRightFromSquare" class="fa-2x clicked"></fa-icon>
   </a>
-  <a *ngIf="currentUser" class="check-user">
+  <a *ngIf="currentUser" class="check-user" routerLink="/myprofile">
     <img id="photo-user" [src]="currentUser.photo" alt="votre photode profile" />
     <h6 id="user-name">{{ currentUser.name }} connecté</h6>
   </a>

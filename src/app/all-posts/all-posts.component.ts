@@ -33,8 +33,15 @@ export class AllPostsComponent implements OnInit {
 
   ngOnInit(): void {
     this.postsServices.getAllPosts().subscribe((postArray) => {
-      this.posts = postArray;
-      localStorage['allPosts'] = JSON.stringify(this.posts)
+      if (postArray===null || postArray.length === 0) {
+        console.log(postArray.length);
+        this.message = "Aucun posts pour le moment"
+      }
+        else{
+          console.log(postArray+"aucun")
+          this.posts = postArray;
+          localStorage['allPosts'] = JSON.stringify(this.posts)
+      }
     })
     this.currentUser = JSON.parse(localStorage['userProfile'])
     this.correctingMod = false
@@ -100,8 +107,16 @@ export class AllPostsComponent implements OnInit {
       return false
     }
   }
-  erase(postId: string, postAuthor: string) {
-    this.loading=true
+  erase(postId: string, postAuthor: string, ) {
+    const postSelected = document.getElementById(postId)
+    if (postSelected){
+    postSelected.style.transition = "all 0.5s ease-out";
+    postSelected.style.transform = "scale(0) rotate(1turn)";
+    postSelected.style.opacity = "0";
+    setTimeout(()=>postSelected.remove(),400)
+  }
+    
+    // this.loading=true
     this.postsServices.deleteOne(postId).subscribe({
       next: (response) => {
         this.catchResponse = response;
