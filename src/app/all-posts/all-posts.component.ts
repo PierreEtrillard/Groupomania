@@ -24,8 +24,8 @@ export class AllPostsComponent implements OnInit {
   catchResponse: any
   message: string
   correctingMod: boolean
-  loading:boolean=false
-  loadMessage:string
+  loading: boolean = false
+  loadMessage: string
   constructor(
     private postsServices: PostsService,
     private router: Router
@@ -34,8 +34,15 @@ export class AllPostsComponent implements OnInit {
   ngOnInit(): void {
     this.postsServices.getAllPosts().subscribe((postArray) => {
       this.posts = postArray;
+      if (this.posts.length ===0||this.posts.length ===null) {
+        this.message = "Aucun posts publié pour l'instant";
+        setTimeout(() => {
+          this.message = "";this.router.navigate(['/newpost'])
+        }, 3000);
+        
+      }else{
       localStorage['allPosts'] = JSON.stringify(this.posts)
-    })
+    }})
     this.currentUser = JSON.parse(localStorage['userProfile'])
     this.correctingMod = false
   }
@@ -79,7 +86,7 @@ export class AllPostsComponent implements OnInit {
     this.postsServices.likePost(postId, this.isLiked(postId)).subscribe(console.log)
   }
   showDetails(postId: string) {
-      this.router.navigate([`post/${postId}`])
+    this.router.navigate([`post/${postId}`])
   }
   correctingModSwitch() {
     this.correctingMod ? this.correctingMod = false : this.correctingMod = true
@@ -101,14 +108,14 @@ export class AllPostsComponent implements OnInit {
     }
   }
   erase(postId: string, postAuthor: string) {
-    this.loading=true
+    this.loading = true
     this.postsServices.deleteOne(postId).subscribe({
       next: (response) => {
         this.catchResponse = response;
         this.message = this.catchResponse.message
         setTimeout(() => {
           this.message = "";
-          this.loading=false
+          this.loading = false
           this.posts = this.posts.filter((post) => post.id !== postId)
         }, 3000)
         //traitement dans le localstorage pour eviter une requète
