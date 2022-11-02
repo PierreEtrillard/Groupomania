@@ -1,35 +1,61 @@
 @import "../../scss/styles";
-nav {
-  position: fixed;
-  align-items: flex-start;
-  justify-content: space-evenly;
-  background-color: $tertiaryColor;
-  /* version desktop*/
-  // flex-direction: column;
-  // display: flex;
-  // right: 0;
-  // min-height: 100%;
-  //version mobile
-  height: 30px;
-  flex-direction: row;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  margin: 0;
-}
-.icon-wrapper {
-  transform: translateY(-30px);
-  @include centralizer;
-  @include medal-white;
-  width: 70px;
-  height: 70px;
-  transition: 0.5s;
-  position: relative;
-  &:hover {
-    transform: rotateY(-180deg) translateY(-50px);
-    @include medal-dark;
+
+@media all and (max-width: 740px) {
+  nav {
+    position: fixed;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    background-color: $tertiaryColor;
+    height: 30px;
+    flex-direction: row;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    margin: 0;
   }
-  &::after {
-    position: absolute;
+  .icon-wrapper {
+    transform: translateY(-30px);
+    @include centralizer;
+    @include medal-white;
+    width: 70px;
+    height: 70px;
+    transition: 0.5s;
+    position: relative;
+    &:hover {
+      transform: rotateY(-180deg) translateY(-50px);
+      @include medal-dark;
+    }
+    &::after {
+      position: absolute;
+    }
+  }
+}
+@media all and (min-width: 741px) {
+  nav {
+    position: fixed;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    background-color: $tertiaryColor;
+    flex-direction: column;
+    display: flex;
+    right: 0;
+    bottom: 0;
+    min-height: 100%;
+  }
+  .icon-wrapper {
+    transform: translateX(-30px);
+    @include centralizer;
+    @include medal-white;
+    width: 70px;
+    height: 70px;
+    transition: 0.5s;
+    position: relative;
+    &:hover {
+      transform: rotateY(-180deg) translateX(30px);
+      @include medal-dark;
+    }
+    &::after {
+      position: absolute;
+    }
   }
 }
