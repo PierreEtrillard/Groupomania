@@ -1,14 +1,22 @@
 # Groupomania
 
 Ce projet à été généré avec [Angular CLI](https://github.com/angular/angular-cli) version 14.1.2.
-les variables d'environemnent sont a
+
+## Pour lancer le projet sur une nouvelle machine, tapez:
+
+npm install -g @angular/cli (installation globlal)
+npm install --save
+
+## Variables d'environemnent
+En developpement Angular utilisera la constante écrite dans le fichier groupomania\src\environments\environment.ts
+En production Angular utilisera la constante écrite dans le fichier groupomania\src\environments\environment.prod.ts
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Tapez `ng serve -o` pour lancer le serveur de développement et ouvrir le projet dans votre navigateur par defaut à l'adresse `http://localhost:4200/`. Tous changement effectués dans les fichiers affecteront automatiquement le rendu dans le navigateur.
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Tapez `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
 ## Further help
 

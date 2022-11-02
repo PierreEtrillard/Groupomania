@@ -24,8 +24,8 @@ export class AllPostsComponent implements OnInit {
   catchResponse: any
   message: string
   correctingMod: boolean
-  loading:boolean=false
-  loadMessage:string
+  loading: boolean = false
+  loadMessage: string
   constructor(
     private postsServices: PostsService,
     private router: Router
@@ -33,14 +33,12 @@ export class AllPostsComponent implements OnInit {
 
   ngOnInit(): void {
     this.postsServices.getAllPosts().subscribe((postArray) => {
-      if (postArray===null || postArray.length === 0) {
-        console.log(postArray.length);
+      if (postArray === null || postArray.length === 0) {
         this.message = "Aucun posts pour le moment"
       }
-        else{
-          console.log(postArray+"aucun")
-          this.posts = postArray;
-          localStorage['allPosts'] = JSON.stringify(this.posts)
+      else {
+        this.posts = postArray;
+        localStorage['allPosts'] = JSON.stringify(this.posts)
       }
     })
     this.currentUser = JSON.parse(localStorage['userProfile'])
@@ -70,23 +68,23 @@ export class AllPostsComponent implements OnInit {
       this.currentUser.myLikes = this.currentUser.myLikes.filter(
         (postsIds) => postsIds !== postId)
       targetedPost.likers = targetedPost.likers.filter(
-        (lkersIds) => lkersIds !== this.currentUser.name)
-
+        (lkersIds) => lkersIds !== this.currentUser.id)
     } else {
       if (this.currentUser.myLikes !== undefined && postAuthor !== this.currentUser.name) { // ajoute un like 
-        targetedPost?.likers.push(this.currentUser.name)
+        targetedPost?.likers.push(this.currentUser.id) 
         this.currentUser.myLikes.push(postId)
+        console.log("actived?");
       }
     }
-    setTimeout(() => { this.message = "" }, 3000)
     //traitement dans le localstorage pour eviter une requète
     localStorage['allPosts'] = JSON.stringify(this.posts)
     localStorage['userProfile'] = JSON.stringify(this.currentUser)
+    setTimeout(() => { this.message = "" }, 3000)
     // mise à jour de la BDD faite par l'API
     this.postsServices.likePost(postId, this.isLiked(postId)).subscribe(console.log)
   }
   showDetails(postId: string) {
-      this.router.navigate([`post/${postId}`])
+    this.router.navigate([`post/${postId}`])
   }
   correctingModSwitch() {
     this.correctingMod ? this.correctingMod = false : this.correctingMod = true
@@ -107,15 +105,15 @@ export class AllPostsComponent implements OnInit {
       return false
     }
   }
-  erase(postId: string, postAuthor: string, ) {
+  erase(postId: string, postAuthor: string,) {
     const postSelected = document.getElementById(postId)
-    if (postSelected){
-    postSelected.style.transition = "all 0.5s ease-out";
-    postSelected.style.transform = "scale(0) rotate(1turn)";
-    postSelected.style.opacity = "0";
-    setTimeout(()=>postSelected.remove(),400)
-  }
-    
+    if (postSelected) {
+      postSelected.style.transition = "all 0.5s ease-out";
+      postSelected.style.transform = "scale(0) rotate(1turn)";
+      postSelected.style.opacity = "0";
+      setTimeout(() => postSelected.remove(), 400)
+    }
+
     // this.loading=true
     this.postsServices.deleteOne(postId).subscribe({
       next: (response) => {
@@ -123,7 +121,7 @@ export class AllPostsComponent implements OnInit {
         this.message = this.catchResponse.message
         setTimeout(() => {
           this.message = "";
-          this.loading=false
+          this.loading = false
           this.posts = this.posts.filter((post) => post.id !== postId)
         }, 3000)
         //traitement dans le localstorage pour eviter une requète

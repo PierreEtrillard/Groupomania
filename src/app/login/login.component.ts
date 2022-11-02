@@ -21,7 +21,6 @@ export class LoginComponent implements OnInit {
     this.usersService.logout().subscribe()
     this.loginForm = this.formBuilder.group({
       email: ["", [Validators.required, Validators.email]],
-      //prévoir une auth avec mail => email: ["",[Validators.required,Validators.email] ],
       password: ["", [Validators.required, Validators.minLength(9)]]
     })
   }
@@ -41,6 +40,7 @@ export class LoginComponent implements OnInit {
       error: (error) => {
         const errorStringified =JSON.stringify(error.error)
         this.errorMsg = errorStringified.split('"')[3]
+        setTimeout(()=>this.errorMsg ="",2000)
       },
     })
   }
