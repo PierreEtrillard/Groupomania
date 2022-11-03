@@ -70,11 +70,11 @@ export class AllPostsComponent implements OnInit {
       this.currentUser.myLikes = this.currentUser.myLikes.filter(
         (postsIds) => postsIds !== postId)
       targetedPost.likers = targetedPost.likers.filter(
-        (lkersIds) => lkersIds !== this.currentUser.name)
+        (lkersIds) => lkersIds !== this.currentUser.id)
 
     } else {
       if (this.currentUser.myLikes !== undefined && postAuthor !== this.currentUser.name) { // ajoute un like 
-        targetedPost?.likers.push(this.currentUser.name)
+        targetedPost?.likers.push(this.currentUser.id)
         this.currentUser.myLikes.push(postId)
       }
     }
@@ -117,7 +117,7 @@ export class AllPostsComponent implements OnInit {
           this.message = "";
           this.loading = false
           this.posts = this.posts.filter((post) => post.id !== postId)
-        }, 3000)
+        }, 1500)
         //traitement dans le localstorage pour eviter une requète
         localStorage['allPosts'] = JSON.stringify(this.posts)
       },
