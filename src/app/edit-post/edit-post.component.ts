@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Post } from '../models/post.model';
 import { PostsService } from '../services/posts.service';
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { Router } from '@angular/router';

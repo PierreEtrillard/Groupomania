@@ -11,28 +11,34 @@ nav {
   height: 70px;
   transition: 0.5s;
   position: relative;
-  &:hover {
-    @include medal-dark;
-  }
-  &::after {
+    &::after {
     position: absolute;
   }
+  &-corrector {
+    @include medal-red;
+  }
 }
+
 @media all and (min-width: 840px) {
   nav {
     flex-direction: column;
     display: flex;
     right: 0;
-    bottom: 0;
+    top: 10%;
     min-height: 100%;
     width: 70px;
     align-items: flex-start;
-    justify-content: space-evenly;
+    justify-content: flex-start;
   }
   .icon-wrapper {
+    margin-top: 40px;
     transform: translateX(-35px);
     &:hover {
       transform: rotateY(-180deg) translateX(35px);
+      @include medal-dark;
+    }
+    &:nth-last-child(1){
+      margin-top: 230px;
     }
   }
 }
@@ -48,5 +54,8 @@ nav {
   }
   .icon-wrapper {
     transform: rotateY(-180deg) translateY(-50px);
+    &:active {
+      @include medal-dark;
+    }
   }
 }

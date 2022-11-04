@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Post } from '../models/post.model';
 import { PostsService } from '../services/posts.service';
-import { faEraser, faCommenting, faHeart, faMagnifyingGlassPlus, faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faCommenting, faHeart, faMagnifyingGlassPlus, faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { User } from '../models/user.model';
 import { Router } from '@angular/router';
 
@@ -16,14 +16,12 @@ export class AllPostsComponent implements OnInit {
   users: User[]
   currentUser: User
   faCommenting = faCommenting
-  faEraser = faEraser
   faHeart = faHeart
   faMagnifyingGlassPlus = faMagnifyingGlassPlus
   faPen = faPen
   faTrash = faTrash
   catchResponse: any
   message: string
-  correctingMod: boolean
   loading: boolean = false
   loadMessage: string
   constructor(
@@ -44,7 +42,6 @@ export class AllPostsComponent implements OnInit {
       localStorage['allPosts'] = JSON.stringify(this.posts)
     }})
     this.currentUser = JSON.parse(localStorage['userProfile'])
-    this.correctingMod = false
   }
 
   isNewPost(creationDate: number | undefined): boolean {
@@ -88,12 +85,9 @@ export class AllPostsComponent implements OnInit {
   showDetails(postId: string) {
     this.router.navigate([`post/${postId}`])
   }
-  correctingModSwitch() {
-    this.correctingMod ? this.correctingMod = false : this.correctingMod = true
-  }
 
   correctable(postAuthor: string) {
-    if (postAuthor === this.currentUser.name && this.correctingMod) {
+    if (postAuthor === this.currentUser.name && this.postsServices.correctingModState) {
       return true
     } else {
       return false
@@ -101,7 +95,8 @@ export class AllPostsComponent implements OnInit {
   }
   erasable(postAuthor: string) {
     if (
-      (postAuthor === this.currentUser.name || this.currentUser.role !== 'normal') && this.correctingMod) {
+      (postAuthor === this.currentUser.name || this.currentUser.role !== 'normal')
+       && this.postsServices.correctingModState) {
       return true
     } else {
       return false

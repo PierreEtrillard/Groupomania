@@ -15,4 +15,7 @@
     <fa-icon [icon]="faStar" class="fa-2x clicked"></fa-icon>
     <!-- <p class="icon-description">date picker</p> -->
   </a>
+  <div [ngClass]="correctingMod === false ?'icon-wrapper':'icon-wrapper icon-wrapper-corrector'" class="fa-2x clicked" (click)="correctorSwitch()">
+    <fa-icon [icon]="faEraser"></fa-icon>
+  </div>
 </nav>

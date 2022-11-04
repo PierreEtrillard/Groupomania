@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faStar, faAddressCard, faComment, faAddressBook } from "@fortawesome/free-solid-svg-icons";
+import { faEraser, faStar, faAddressCard, faComment, faAddressBook } from "@fortawesome/free-solid-svg-icons";
 import { AllPostsComponent } from '../all-posts/all-posts.component';
 import { PostsService } from '../services/posts.service';
 @Component({
@@ -12,8 +12,16 @@ export class NavbarComponent implements OnInit {
   faComment = faComment
   faAddressBook = faAddressBook
   faAddressCard = faAddressCard
+  faEraser = faEraser
+  correctingMod: boolean = false
   constructor(private postsService: PostsService) { }
 
   ngOnInit(): void {
+    console.log(this.correctingMod)
+
+  }
+  correctorSwitch() {
+    this.correctingMod ? this.correctingMod = false : this.correctingMod = true
+    this.postsService.correctorSwitch()
   }
 }

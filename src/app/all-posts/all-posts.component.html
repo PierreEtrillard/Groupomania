@@ -82,15 +82,5 @@
       </div>
     </div>
   </section>
-  <div
-    [ngClass]="
-      correctingMod
-        ? 'correctingModBtn correctingModEnabled'
-        : 'correctingModBtn '
-    "
-    (click)="correctingModSwitch()"
-  >
-    <fa-icon [icon]="faEraser"></fa-icon>
-  </div>
   <app-navbar></app-navbar>
 </main>
